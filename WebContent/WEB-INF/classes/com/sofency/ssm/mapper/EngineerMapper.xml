@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofency.ssm.mapper.EngineerMapper" >
+  <resultMap id="BaseResultMap" type="com.sofency.ssm.pojo.Engineer" >
+    <id column="engineer_id" property="engineerId" jdbcType="INTEGER" />
+    <result column="engineer_name" property="engineerName" jdbcType="VARCHAR" />
+    <result column="engineer_imgPath" property="engineerImgpath" jdbcType="VARCHAR" />
+    <result column="engineer_sex" property="engineerSex" jdbcType="CHAR" />
+    <result column="engineer_tel" property="engineerTel" jdbcType="CHAR" />
+    <result column="engineer_email" property="engineerEmail" jdbcType="VARCHAR" />
+    <result column="instid" property="instid" jdbcType="INTEGER" />
+    <result column="majorid" property="majorid" jdbcType="INTEGER" />
+    <result column="engineer_motto" property="engineerMotto" jdbcType="VARCHAR" />
+    <result column="engineer_git" property="engineerGit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    engineer_id, engineer_name, engineer_imgPath, engineer_sex, engineer_tel, engineer_email, 
+    instid, majorid, engineer_motto, engineer_git
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sofency.ssm.pojo.EngineerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from engineer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from engineer
+    where engineer_id = #{engineerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from engineer
+    where engineer_id = #{engineerId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sofency.ssm.pojo.EngineerExample" >
+    delete from engineer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sofency.ssm.pojo.Engineer" >
+    insert into engineer (engineer_id, engineer_name, engineer_imgPath, 
+      engineer_sex, engineer_tel, engineer_email, 
+      instid, majorid, engineer_motto, 
+      engineer_git)
+    values (#{engineerId,jdbcType=INTEGER}, #{engineerName,jdbcType=VARCHAR}, #{engineerImgpath,jdbcType=VARCHAR}, 
+      #{engineerSex,jdbcType=CHAR}, #{engineerTel,jdbcType=CHAR}, #{engineerEmail,jdbcType=VARCHAR}, 
+      #{instid,jdbcType=INTEGER}, #{majorid,jdbcType=INTEGER}, #{engineerMotto,jdbcType=VARCHAR}, 
+      #{engineerGit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sofency.ssm.pojo.Engineer" >
+    insert into engineer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="engineerId != null" >
+        engineer_id,
+      </if>
+      <if test="engineerName != null" >
+        engineer_name,
+      </if>
+      <if test="engineerImgpath != null" >
+        engineer_imgPath,
+      </if>
+      <if test="engineerSex != null" >
+        engineer_sex,
+      </if>
+      <if test="engineerTel != null" >
+        engineer_tel,
+      </if>
+      <if test="engineerEmail != null" >
+        engineer_email,
+      </if>
+      <if test="instid != null" >
+        instid,
+      </if>
+      <if test="majorid != null" >
+        majorid,
+      </if>
+      <if test="engineerMotto != null" >
+        engineer_motto,
+      </if>
+      <if test="engineerGit != null" >
+        engineer_git,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="engineerId != null" >
+        #{engineerId,jdbcType=INTEGER},
+      </if>
+      <if test="engineerName != null" >
+        #{engineerName,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerImgpath != null" >
+        #{engineerImgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerSex != null" >
+        #{engineerSex,jdbcType=CHAR},
+      </if>
+      <if test="engineerTel != null" >
+        #{engineerTel,jdbcType=CHAR},
+      </if>
+      <if test="engineerEmail != null" >
+        #{engineerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="instid != null" >
+        #{instid,jdbcType=INTEGER},
+      </if>
+      <if test="majorid != null" >
+        #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="engineerMotto != null" >
+        #{engineerMotto,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerGit != null" >
+        #{engineerGit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sofency.ssm.pojo.EngineerExample" resultType="java.lang.Integer" >
+    select count(*) from engineer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update engineer
+    <set >
+      <if test="record.engineerId != null" >
+        engineer_id = #{record.engineerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.engineerName != null" >
+        engineer_name = #{record.engineerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineerImgpath != null" >
+        engineer_imgPath = #{record.engineerImgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineerSex != null" >
+        engineer_sex = #{record.engineerSex,jdbcType=CHAR},
+      </if>
+      <if test="record.engineerTel != null" >
+        engineer_tel = #{record.engineerTel,jdbcType=CHAR},
+      </if>
+      <if test="record.engineerEmail != null" >
+        engineer_email = #{record.engineerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instid != null" >
+        instid = #{record.instid,jdbcType=INTEGER},
+      </if>
+      <if test="record.majorid != null" >
+        majorid = #{record.majorid,jdbcType=INTEGER},
+      </if>
+      <if test="record.engineerMotto != null" >
+        engineer_motto = #{record.engineerMotto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineerGit != null" >
+        engineer_git = #{record.engineerGit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update engineer
+    set engineer_id = #{record.engineerId,jdbcType=INTEGER},
+      engineer_name = #{record.engineerName,jdbcType=VARCHAR},
+      engineer_imgPath = #{record.engineerImgpath,jdbcType=VARCHAR},
+      engineer_sex = #{record.engineerSex,jdbcType=CHAR},
+      engineer_tel = #{record.engineerTel,jdbcType=CHAR},
+      engineer_email = #{record.engineerEmail,jdbcType=VARCHAR},
+      instid = #{record.instid,jdbcType=INTEGER},
+      majorid = #{record.majorid,jdbcType=INTEGER},
+      engineer_motto = #{record.engineerMotto,jdbcType=VARCHAR},
+      engineer_git = #{record.engineerGit,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sofency.ssm.pojo.Engineer" >
+    update engineer
+    <set >
+      <if test="engineerName != null" >
+        engineer_name = #{engineerName,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerImgpath != null" >
+        engineer_imgPath = #{engineerImgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerSex != null" >
+        engineer_sex = #{engineerSex,jdbcType=CHAR},
+      </if>
+      <if test="engineerTel != null" >
+        engineer_tel = #{engineerTel,jdbcType=CHAR},
+      </if>
+      <if test="engineerEmail != null" >
+        engineer_email = #{engineerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="instid != null" >
+        instid = #{instid,jdbcType=INTEGER},
+      </if>
+      <if test="majorid != null" >
+        majorid = #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="engineerMotto != null" >
+        engineer_motto = #{engineerMotto,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerGit != null" >
+        engineer_git = #{engineerGit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where engineer_id = #{engineerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sofency.ssm.pojo.Engineer" >
+    update engineer
+    set engineer_name = #{engineerName,jdbcType=VARCHAR},
+      engineer_imgPath = #{engineerImgpath,jdbcType=VARCHAR},
+      engineer_sex = #{engineerSex,jdbcType=CHAR},
+      engineer_tel = #{engineerTel,jdbcType=CHAR},
+      engineer_email = #{engineerEmail,jdbcType=VARCHAR},
+      instid = #{instid,jdbcType=INTEGER},
+      majorid = #{majorid,jdbcType=INTEGER},
+      engineer_motto = #{engineerMotto,jdbcType=VARCHAR},
+      engineer_git = #{engineerGit,jdbcType=VARCHAR}
+    where engineer_id = #{engineerId,jdbcType=INTEGER}
+  </update>
+</mapper>

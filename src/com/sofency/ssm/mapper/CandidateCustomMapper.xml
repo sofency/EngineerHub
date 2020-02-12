@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofency.ssm.mapper.CandidateCustomMapper">
+	 <resultMap id="BaseResultMap" type="com.sofency.ssm.pojo.Candidate" >
+	    <id column="candidate_id" property="candidateId" jdbcType="INTEGER" />
+	    <result column="candidate_name" property="candidateName" jdbcType="VARCHAR" />
+	    <result column="candidate_sex" property="candidateSex" jdbcType="CHAR" />
+	    <result column="candidate_tel" property="candidateTel" jdbcType="VARCHAR" />
+	    <result column="candidate_email" property="candidateEmail" jdbcType="VARCHAR" />
+	    <result column="instid" property="instid" jdbcType="INTEGER" />
+   		<result column="majorId" property="majorid" jdbcType="INTEGER" />
+	    <result column="candidate_introduce" property="candidateIntroduce" jdbcType="VARCHAR" />
+	    <result column="candidate_fame" property="candidateFame" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	  <resultMap id="candidateCustomExample" type="com.sofency.ssm.pojo.CandidateCustomExample" extends="BaseResultMap">
+	    <result column="instname" property="instname" jdbcType="VARCHAR" />
+   		<result column="majorname" property="majorname" jdbcType="VARCHAR" />
+	    
+	  </resultMap>
+		<!-- 分页查找 -->
+	  <select id="findInfoByPage" parameterType="Integer" resultMap="BaseResultMap">
+	        select * from candidate limit #{page},4
+	  </select>
+	  
+	  
+	  <select id="getInfoById" parameterType="Integer" resultMap="candidateCustomExample">
+	        select candidate_id,candidate_name,candidate_sex,candidate_tel,candidate_email,candidate_introduce,candidate_fame,instname,majorname
+	         from candidate,institude,major 
+	         where candidate.instid = major.instid 
+	         and candidate.majorid = major.majorid and institude.instid = major.instid
+	         and candidate_id=#{candidateid}
+	  </select>
+</mapper>

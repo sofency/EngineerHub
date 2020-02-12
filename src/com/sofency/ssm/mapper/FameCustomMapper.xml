@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofency.ssm.mapper.FameCustomMapper">
+	<!-- 查询荣誉列表和荣誉获取者的姓名 -->
+	<cache  type="org.mybatis.caches.ehcache.EhcacheCache"/> 
+	<resultMap id="FameCustom" type="com.sofency.ssm.pojo.FameCustom">
+		<id property="fameId" column="fame_id"></id>
+		<result property="fameName" column="fame_name"></result>
+		<result property="fameLevel" column="fame_level"></result>
+		<result property="engineerName" column="engineer_name"></result>
+	</resultMap>
+	
+  <select id="getFamesInfoList" resultMap="FameCustom">
+  		select fame.fame_id,fame.fame_name,fame.fame_level,engineer_name from fame,getFame,engineer where fame.fame_id = getFame.fame_id and engineer.engineer_id=getFame.engineer_id
+  </select>
+</mapper>
