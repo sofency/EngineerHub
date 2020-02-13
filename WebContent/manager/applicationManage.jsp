@@ -7,14 +7,20 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/back.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<div style="height:100%;height:100%; background-color: #f1f2f6">
 	<%@include file="../common/header.jspf"%>
-	<div style="display:flex;flex-direction: row;width:100%">
-		<%@include file="../common/sidebar.jspf"%>
-		<div style="width:200px;"></div>
-		<div  class="pull-right" style="flex-grow: 0.8;">
+	<div style="display:flex;flex-direction: row;width:100%;height:90%">
+		<div class="col-md-2 nav-main">
+			<ul class="text-center">
+	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0"><span>未处理</span></a></li>
+	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1"><span>已通过</span></a></li>
+	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=-1"><span>已淘汰</span></a></li>
+	    	</ul>
+		</div>
+		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
 			 <div class="panel panel-primary">
 			     <div class="panel-heading">简历管理</div>
 			     <div class="panel-body">
@@ -42,16 +48,17 @@
 						    </c:forEach>
 						 </tbody>
 				   	</table>
+				   	<p>${page.pages}</p>
 			          <div class="pull-right">
 			            <nav aria-label="Page navigation">
 			                <ul class="pagination">
 			                    <li>
-			                        <a href="javascript:void(0)" onclick="prevPage(${currentPage-1},${pages})" id="prev" aria-label="Previous">
+			                        <a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=0"  id="prev" aria-label="Previous">
 			                            <span aria-hidden="true">&laquo;</span>
 			                        </a>
 			                    </li>
 			                    <li>
-			                        <a href="javascript:void(0)" onclick="nextPage(${currentPage+1},${pages})" id="next" aria-label="Next">
+			                        <a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=0" id="next" aria-label="Next">
 			                            <span aria-hidden="true">&raquo;</span>
 			                        </a>
 			                    </li>
@@ -130,27 +137,26 @@
 	        </div>
 	    </div>
 	</div>
+</div>
 <script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
 <script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/staticfile/js/application.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/back.js"></script>
 <script type="text/javascript">
-	function deal(num){
-		console.log(num)
-		//发送该申请人的id 状态为淘汰
-		var candidateId = $("#candidateId").val();
-		console.log(candidateId);
-		$.ajax({
-			url:"http://localhost:9999/EngineerHub/back/candidate/"+candidateId+"/"+num,
-		    type:"post",
-			async:true,
-			success:function(data){
-				console.log(data)
-			}
-		})
-		
-		$("#myModalDetail").modal('hide')
-	}
+function deal(num){
+	console.log(num)
+	//发送该申请人的id 状态为淘汰
+	var candidateId = $("#candidateId").val();
+	console.log(candidateId);
+	$.ajax({
+		url:"http://localhost:9999/EngineerHub/back/candidate/"+candidateId+"/"+num,
+	    type:"post",
+		async:true,
+		success:function(data){
+			console.log(data)
+		}
+	})
+	$("#myModalDetail").modal('hide')
+}
 </script>
 </body>
 </html>

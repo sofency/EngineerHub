@@ -14,6 +14,7 @@ import com.sofency.ssm.mapper.CandidateMapper;
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
 import com.sofency.ssm.pojo.CandidateExample;
+import com.sofency.ssm.pojo.CandidateExample.Criteria;
 import com.sofency.ssm.service.CandidateService;
 
 @Service
@@ -42,8 +43,14 @@ public class CandidateServiceImpl implements CandidateService{
 	
 	//获取申请人列表的api
 	@Override
-	public List<Candidate> getCandidateList(int page) {
-		return candidateCustomMapper.findInfoByPage(page*SIZE);
+	public List<Candidate> getCandidateList(Byte status) {//
+		CandidateExample example = new CandidateExample();
+		Criteria criteria = example.createCriteria();
+		
+			criteria.andCandidatestatusEqualTo(status);
+		List<Candidate> list = candidateMapper.selectByExample(example);
+		
+		return list;
 	}
 
 	//根据主键查询申请人的信息
@@ -95,8 +102,12 @@ public class CandidateServiceImpl implements CandidateService{
 	}
 	
 	@Override
-	public List<Candidate> getCandidateList(int page, Byte status) {
+	public List<Candidate> getCandidates(int page, Byte status) {
+		CandidateExample  example = new CandidateExample();
+		com.sofency.ssm.pojo.CandidateExample.Criteria criteria = example.createCriteria();
+		criteria.andCandidatestatusEqualTo(status);
 		
-		return null;
+		List<Candidate> list = candidateMapper.selectByExample(example);//查询状态为status的所有数据
+		return list;
 	}
 }

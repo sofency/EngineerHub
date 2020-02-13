@@ -8,16 +8,18 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/back.css">
 </head>
 <body>
- <!--面板开始-->
- 	<!-- 公共头部 -->
+ <div style="height:100%;height:100%; background-color: #f1f2f6">
 	<%@include file="../common/header.jspf"%>
-	<div style="display:flex;flex-direction: row;width:100%">
-		<%@include file="../common/sidebar.jspf"%>
-		<div style="width:200px;"></div>
-		<div style="flex-grow: 0.8;">
+	<div style="display:flex;flex-direction: row;width:100%;height:90%">
+		<div class="col-md-2 nav-main">
+			<ul class="text-center">
+	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0"><span>查看往期荣誉</span></a></li>
+	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1"><span>荣誉修改</span></a></li>
+	    	</ul>
+		</div>
+		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
 			<div class="panel panel-primary">
 			     <div class="panel-heading">荣誉管理</div>
 			     <div class="panel-body">
@@ -130,8 +132,8 @@
         </div>
     </div>
 </div>
+</div>
 <script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
 <script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/staticfile/js/back.js"></script>
 </body>
 </html>

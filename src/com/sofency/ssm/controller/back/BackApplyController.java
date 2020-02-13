@@ -1,9 +1,6 @@
 package com.sofency.ssm.controller.back;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sofency.ssm.pojo.Candidate;
-import com.sofency.ssm.pojo.CandidateCustom;
 import com.sofency.ssm.pojo.CandidateCustomExample;
 import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.SendMailUtilService;
@@ -29,35 +28,19 @@ public class BackApplyController {
 	@Autowired
 	private SendMailUtilService sendMailUtilService;
 	
-	@GetMapping("/candidates/{page}")
-	public ModelAndView selectCandidateList(@PathVariable("page") int page) {
+	@GetMapping("/getCandidates")
+	public ModelAndView selectCandidateList(@RequestParam(required=true,defaultValue="1") Integer page,Byte status) {
 		ModelAndView model = new ModelAndView();
-		List<Candidate> list=candidateService.getCandidateList(page);
-		//总页数
-		int pages = candidateService.countRows();
-		model.addObject("Candidate", list);
-		model.addObject("pages", pages);
-		//还要返回当前的页
-		model.addObject("currentPage", page);
+		List<Candidate> list=candidateService.getCandidateList(status);//获取状态的信息
+		PageHelper.startPage(page, 4);
+	    List<Candidate> candidates = candidateService.getCandidates(page, status);
+	    PageInfo<Candidate> p=new PageInfo<Candidate>(candidates);
+	    model.addObject("page",p);
+	    model.addObject("Candidate", candidates);
 		model.setViewName("manager/applicationManage");
 		return model;
 	}
 	
-	//返回json数据
-	@RequestMapping("/candidatesByJson/{page}")
-	public @ResponseBody CandidateCustom selectCandidateListByJson(@PathVariable("page")int page) {
-		ArrayList<Candidate> list=(ArrayList<Candidate>) candidateService.getCandidateList(page);//页面里面的内容
-		//当前的页
-		int currentPage = page;//当前页
-		//总页数
-		int pages = candidateService.countRows();
-		CandidateCustom candidate = new CandidateCustom();
-		candidate.setCurrentPage(currentPage);
-		candidate.setList(list);
-		candidate.setPageSize(4);
-		//总页数
-		return candidate;
-	}
 	
 	//根据id查找申请者的数据
 	@GetMapping("/candidate/{id}")
@@ -68,6 +51,8 @@ public class BackApplyController {
 		return candidate;
 	}
 	
+	
+	//根据状态决定是否向用户发送邮件
 	@PostMapping("/candidate/{id}/{status}")
 	@ResponseBody
 	public String postCanndidate(@PathVariable("id")Integer candidateId,@PathVariable("status")Byte status) {
@@ -88,22 +73,5 @@ public class BackApplyController {
 			return "false";
 		}
 	}
-	
-	
-	//查询已经处理过的候选者信息
-	@GetMapping("/candidationsdeal/{page}")//  处理过的信息
-	public ModelAndView getdealCandidate(@PathVariable("page")int page) {//页面
-		ModelAndView model = new ModelAndView();
-		
-		
-		
-		
-		return model;
-		
-	}
-	
-	
-	//查询没有处理过的候选者信息
-	
 	
 }

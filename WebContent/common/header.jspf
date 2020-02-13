@@ -2,6 +2,27 @@
     pageEncoding="UTF-8"%>
 <div class="header">
 	<div class="title"><span class="room">斜杠青年工作室</span></div>
-	<div class="system "><span>后台管理系统</span></div>
+	<div class="system"><span>后台管理系统</span></div>
+	<ul class="nav" style="display: flex;flex-direction:row;height:40px;line-height:40px; margin-left:50px;">
+	  <li class="nav-item">
+	    <a class="nav-link active headernav"  href="" style="padding:0px; display: flex;flex-direction:column;height:80px;"> 
+	    	<i class="fa fa-id-card-o" aria-hidden="true" style="font-size: 1.8em;margin-top: 10px;"></i>
+	    	<span style="width: 80px;text-align: center;height:5px;padding-top:0">简历管理</span>
+	    </a>
+	  </li>
+	  <li class="nav-item">
+		   <a class="nav-link active headernav" href="" style="padding:0px; display: flex;flex-direction:column;height:80px;"> 
+		    	<i class="fa fa-user-o" aria-hidden="true" style="font-size: 1.8em;margin-top: 10px;"></i>
+		    	<span style="width: 80px;text-align: center;height:5px;padding-top:0">人员管理</span>
+		    </a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link active headernav" href=""  style="padding:0px; display: flex;flex-direction:column;height:80px;"> 
+		    	<i class="fa fa-trophy" aria-hidden="true" style="font-size: 1.8em;margin-top: 10px;"></i>
+		    	<span style="width: 80px;text-align: center;height:5px;padding-top:0">荣誉管理</span>
+		    </a>
+	  </li>
+	</ul>
 	<div class="width-to-right"><a class="btn btn-primary back float-right" href="${pageContext.request.contextPath}/logoutmethod.action">退出</a></div>
 </div>
+		

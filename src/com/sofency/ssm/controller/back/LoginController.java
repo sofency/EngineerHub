@@ -39,7 +39,7 @@ public class LoginController {
 				cookie.setPath("/");
 				response.addCookie(cookie);//添加cookie
 			}
-			return "redirect:/back/candidates/0";
+			return "redirect:/back/getCandidates.action?page=0&&status=0";//未处理
 		}else {
 			model.addAttribute("flag", "密码或者账户错误");
 			return "login";

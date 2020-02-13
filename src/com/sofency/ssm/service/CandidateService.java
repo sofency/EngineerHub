@@ -10,8 +10,8 @@ public interface CandidateService {
 	//插入申请者的信息
 	public boolean insertCandidate(Candidate candidate);
 
-	//获取申请者简历的信息
-	public List<Candidate> getCandidateList(int page);
+	//获取申请者简历的信息 处理过的和未处理的信息
+	public List<Candidate> getCandidateList(Byte status);
 	
 	//根据id查找申请者数据
 	public CandidateCustomExample selectCandidateInfo(Integer candidateId);
@@ -28,7 +28,7 @@ public interface CandidateService {
 	
 	//明天任务
 	//查询已经处理过的候选者信息 分页
-	public List<Candidate> getCandidateList(int page,Byte status);
+	public List<Candidate> getCandidates(int page,Byte status);
 	
 	
 }
