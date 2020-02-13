@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sofency.ssm.pojo.Major;
-import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.InstitudeMajorService;
 
 @Controller
