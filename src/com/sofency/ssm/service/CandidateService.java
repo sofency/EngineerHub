@@ -4,13 +4,6 @@ import java.util.List;
 
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
-import com.sofency.ssm.pojo.Engineer;
-import com.sofency.ssm.pojo.EngineerCustom;
-import com.sofency.ssm.pojo.EngineersSomeInfo;
-import com.sofency.ssm.pojo.Fame;
-import com.sofency.ssm.pojo.FameCustom;
-import com.sofency.ssm.pojo.Institude;
-import com.sofency.ssm.pojo.Major;
 
 public interface CandidateService {
 	

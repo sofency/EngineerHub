@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sofency.ssm.pojo.FameCustom;
-import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.FameService;
 
 @Controller

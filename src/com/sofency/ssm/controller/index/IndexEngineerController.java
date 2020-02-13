@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sofency.exception.CustomException;
 import com.sofency.ssm.pojo.Engineer;
 import com.sofency.ssm.pojo.EngineerCustomJson;
 import com.sofency.ssm.pojo.EngineersSomeInfo;
-import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.EngineerService;
 
 @Controller

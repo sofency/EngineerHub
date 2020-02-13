@@ -91,7 +91,16 @@ public class BackApplyController {
 	
 	
 	//查询已经处理过的候选者信息
-	
+	@GetMapping("/candidationsdeal/{page}")//  处理过的信息
+	public ModelAndView getdealCandidate(@PathVariable("page")int page) {//页面
+		ModelAndView model = new ModelAndView();
+		
+		
+		
+		
+		return model;
+		
+	}
 	
 	
 	//查询没有处理过的候选者信息

@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sofency.ssm.pojo.Engineer;
 import com.sofency.ssm.pojo.EngineerCustomJson;
 import com.sofency.ssm.pojo.Institude;
-import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.EngineerService;
 import com.sofency.ssm.service.InstitudeMajorService;
 

@@ -11,26 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sofency.exception.CustomException;
 import com.sofency.ssm.mapper.CandidateCustomMapper;
 import com.sofency.ssm.mapper.CandidateMapper;
-import com.sofency.ssm.mapper.EngineerCustomMapper;
-import com.sofency.ssm.mapper.EngineerMapper;
-import com.sofency.ssm.mapper.FameCustomMapper;
-import com.sofency.ssm.mapper.FameMapper;
-import com.sofency.ssm.mapper.InstitudeMapper;
-import com.sofency.ssm.mapper.MajorMapper;
-import com.sofency.ssm.mapper.ManagerCustomMapper;
-import com.sofency.ssm.mapper.ManagerMapper;
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
 import com.sofency.ssm.pojo.CandidateExample;
-import com.sofency.ssm.pojo.Engineer;
-import com.sofency.ssm.pojo.EngineerCustom;
-import com.sofency.ssm.pojo.EngineersSomeInfo;
-import com.sofency.ssm.pojo.Fame;
-import com.sofency.ssm.pojo.FameCustom;
-import com.sofency.ssm.pojo.Institude;
-import com.sofency.ssm.pojo.Major;
-import com.sofency.ssm.pojo.MajorExample;
-import com.sofency.ssm.pojo.MajorExample.Criteria;
 import com.sofency.ssm.service.CandidateService;
 
 @Service
@@ -110,12 +93,10 @@ public class CandidateServiceImpl implements CandidateService{
 			return candidate;
 		}
 	}
-
-	
 	
 	@Override
 	public List<Candidate> getCandidateList(int page, Byte status) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }
