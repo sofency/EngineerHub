@@ -5,7 +5,7 @@
 	<div class="system"><span>后台管理系统</span></div>
 	<ul class="nav" style="display: flex;flex-direction:row;height:40px;line-height:40px; margin-left:50px;">
 	  <li class="nav-item">
-	    <a class="nav-link active headernav"  href="" style="padding:0px; display: flex;flex-direction:column;height:80px;"> 
+	    <a class="nav-link active headernav"  href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0" style="padding:0px; display: flex;flex-direction:column;height:80px;"> 
 	    	<i class="fa fa-id-card-o" aria-hidden="true" style="font-size: 1.8em;margin-top: 10px;"></i>
 	    	<span style="width: 80px;text-align: center;height:5px;padding-top:0">简历管理</span>
 	    </a>

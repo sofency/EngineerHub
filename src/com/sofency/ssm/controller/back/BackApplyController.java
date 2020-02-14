@@ -2,8 +2,11 @@ package com.sofency.ssm.controller.back;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,15 +35,20 @@ public class BackApplyController {
 	public ModelAndView selectCandidateList(@RequestParam(required=true,defaultValue="1") Integer page,Byte status) {
 		ModelAndView model = new ModelAndView();
 		List<Candidate> list=candidateService.getCandidateList(status);//获取状态的信息
-		PageHelper.startPage(page, 4);
+		PageHelper.startPage(page, 5);
 	    List<Candidate> candidates = candidateService.getCandidates(page, status);
 	    PageInfo<Candidate> p=new PageInfo<Candidate>(candidates);
 	    model.addObject("page",p);
 	    model.addObject("Candidate", candidates);
-		model.setViewName("manager/applicationManage");
+	    if(status==0) {
+	    	model.setViewName("manager/applicationManage");
+	    }else if(status==1){
+	    	model.setViewName("manager/applicationDealed");
+	    }else {
+	    	model.setViewName("manager/applicationPass");
+	    }
 		return model;
 	}
-	
 	
 	//根据id查找申请者的数据
 	@GetMapping("/candidate/{id}")
@@ -51,6 +59,11 @@ public class BackApplyController {
 		return candidate;
 	}
 	
+	@DeleteMapping(value="/candidate/{id}")
+	public String deleteCandidate(@PathVariable("id") Integer candidateId) {
+		candidateService.deleteCandidate(candidateId);
+		return "redirect:/back/getCandidates.action?status=-1";
+	}
 	
 	//根据状态决定是否向用户发送邮件
 	@PostMapping("/candidate/{id}/{status}")

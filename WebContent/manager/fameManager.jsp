@@ -15,8 +15,8 @@
 	<div style="display:flex;flex-direction: row;width:100%;height:90%">
 		<div class="col-md-2 nav-main">
 			<ul class="text-center">
-	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0"><span>查看往期荣誉</span></a></li>
-	    		<li><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1"><span>荣誉修改</span></a></li>
+	    		<li style="border:1px solid red;"><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0"><span>查看往期荣誉</span></a></li>
+	    		<li style="border:1px solid red;"><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1"><span>荣誉修改</span></a></li>
 	    	</ul>
 		</div>
 		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">

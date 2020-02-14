@@ -16,19 +16,19 @@
 		<div class="col-md-2 nav-main">
 			<ul class="text-center">
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0" class="anniu">
+	    			<a href="/EngineerHub/back/getCandidates.action?status=0" class="anniu">
 	    				<i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>未处理</span>
 	    			</a>
 	    		</li>
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1" class="anniu">
+	    			<a href="/EngineerHub/back/getCandidates.action?status=1" class="anniu">
 	    				<i class="fa fa-check" aria-hidden="true"  style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>已通过</span>
 	    			</a>
 	    		</li>
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=-1" class="anniu">
+	    			<a href="/EngineerHub/back/getCandidates.action?status=-1" class="anniu">
 	    				<i class="fa fa-times" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>已淘汰</span>
 	    			</a>
@@ -37,12 +37,11 @@
 		</div>
 		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
 			 <div class="panel panel-primary">
-			     <div class="panel-heading">未处理</div>
+			     <div class="panel-heading">淘汰的简历</div>
 			     <div class="panel-body">
 					  <table class="table table-bordered text-center">
 			            <thead>
 				             <tr>
-				                 <th class="text-center">申请号</th>
 				                 <th class="text-center">姓名</th>
 				                 <th class="text-center">性别</th>
 				                 <th class="text-center">电话号码</th>
@@ -53,28 +52,34 @@
 			            <tbody id="tablesManage">
 			           		<c:forEach items="${Candidate}" var="item">
 								<tr>
-								    <td>${item.candidateId}</td>
 									<td>${item.candidateName}</td>
 									<td>${item.candidateSex}</td>
 									<td>${item.candidateTel}</td>
 									<td>${item.candidateEmail}</td>
-									<td><a class="btn btn-primary" href="javascript:void(0)" onclick="getDetails(${item.candidateId})">查看详情</a></td>
+									<td>
+										<a class="btn btn-primary" href="javascript:void(0)" onclick="getDetails(${item.candidateId})">查看详情</a>
+										<button class="btn btn-primary btn-danger deletebtn" delete_uri="/EngineerHub/back/candidate/${item.candidateId}">删除</button>
+									</td>
 								</tr>
 						    </c:forEach>
 						 </tbody>
 				   	</table>
+				   	<!-- 配置删除操作 -->
+					 <form id="deleteForm" method="post">
+						<input type="hidden" name="_method" value="delete"/>
+					</form>
 				   	<p class="text-center">共${page.pages}页</p>
 			          <div class="pull-right">
 			            <nav aria-label="Page navigation">
 			                <ul class="pagination">
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=0"  id="prev" aria-label="Previous">
+			                        <a class="page-link" href="/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=-1"  id="prev" aria-label="Previous">
 			                            <span aria-hidden="true">&laquo;</span>
 			                        </a>
 			                    </li>
 			                   <li class="page-item"><a class="page-link" href="javascript:void(0)">${page.prePage+1}</a></li>
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=0" id="next" aria-label="Next">
+			                        <a class="page-link" href="/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=-1" id="next" aria-label="Next">
 			                            <span aria-hidden="true">&raquo;</span>
 			                        </a>
 			                    </li>
@@ -164,7 +169,7 @@ function deal(num){
 	var candidateId = $("#candidateId").val();
 	console.log(candidateId);
 	$.ajax({
-		url:"http://localhost:9999/EngineerHub/back/candidate/"+candidateId+"/"+num,
+		url:"/EngineerHub/back/candidate/"+candidateId+"/"+num,
 	    type:"post",
 		async:true,
 		success:function(data){
@@ -173,6 +178,10 @@ function deal(num){
 	})
 	$("#myModalDetail").modal('hide')
 }
+$(".deletebtn").click(function(){
+	$("#deleteForm").attr("action",$(this).attr("delete_uri")).submit();
+	return false;
+})
 </script>
 </body>
 </html>

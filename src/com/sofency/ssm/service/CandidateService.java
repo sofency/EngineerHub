@@ -31,4 +31,8 @@ public interface CandidateService {
 	public List<Candidate> getCandidates(int page,Byte status);
 	
 	
+	//根据id删除申请人的简历
+	public void deleteCandidate(Integer candidateId);
+	
+	
 }

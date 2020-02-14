@@ -110,4 +110,10 @@ public class CandidateServiceImpl implements CandidateService{
 		List<Candidate> list = candidateMapper.selectByExample(example);//查询状态为status的所有数据
 		return list;
 	}
+
+	//根据id删除申请者
+	@Override
+	public void deleteCandidate(Integer candidateId) {
+		candidateMapper.deleteByPrimaryKey(candidateId);//删除
+	}
 }

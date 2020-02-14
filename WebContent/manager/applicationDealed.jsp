@@ -16,19 +16,19 @@
 		<div class="col-md-2 nav-main">
 			<ul class="text-center">
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0" class="anniu">
+	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=0" class="anniu">
 	    				<i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>未处理</span>
 	    			</a>
 	    		</li>
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1" class="anniu">
+	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=1" class="anniu">
 	    				<i class="fa fa-check" aria-hidden="true"  style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>已通过</span>
 	    			</a>
 	    		</li>
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=-1" class="anniu">
+	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=-1" class="anniu">
 	    				<i class="fa fa-times" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>已淘汰</span>
 	    			</a>
@@ -37,7 +37,7 @@
 		</div>
 		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
 			 <div class="panel panel-primary">
-			     <div class="panel-heading">未处理</div>
+			     <div class="panel-heading">通过的简历</div>
 			     <div class="panel-body">
 					  <table class="table table-bordered text-center">
 			            <thead>
@@ -68,13 +68,13 @@
 			            <nav aria-label="Page navigation">
 			                <ul class="pagination">
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=0"  id="prev" aria-label="Previous">
+			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=1"  id="prev" aria-label="Previous">
 			                            <span aria-hidden="true">&laquo;</span>
 			                        </a>
 			                    </li>
 			                   <li class="page-item"><a class="page-link" href="javascript:void(0)">${page.prePage+1}</a></li>
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=0" id="next" aria-label="Next">
+			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=1" id="next" aria-label="Next">
 			                            <span aria-hidden="true">&raquo;</span>
 			                        </a>
 			                    </li>
