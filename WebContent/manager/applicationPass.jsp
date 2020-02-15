@@ -35,10 +35,10 @@
 	    		</li>
 	    	</ul>
 		</div>
-		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
-			 <div class="panel panel-primary">
+		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding:10px;">
+			 <div class="panel panel-primary" style="height: 100%;">
 			     <div class="panel-heading">淘汰的简历</div>
-			     <div class="panel-body">
+			     <div class="panel-body" style="height: 100%;">
 					  <table class="table table-bordered text-center">
 			            <thead>
 				             <tr>

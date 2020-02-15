@@ -35,11 +35,11 @@
 	    		</li>
 	    	</ul>
 		</div>
-		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
-			 <div class="panel panel-primary">
+		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding:10px;">
+			 <div class="panel panel-primary" style="height:100%">
 			     <div class="panel-heading">未处理</div>
-			     <div class="panel-body">
-					  <table class="table table-bordered text-center">
+			     <div class="panel-body"  style="height:100%">
+					  <table class="table table-bordered text-center" style="height: 80%">
 			            <thead>
 				             <tr>
 				                 <th class="text-center">申请号</th>
@@ -62,9 +62,9 @@
 								</tr>
 						    </c:forEach>
 						 </tbody>
-				   	</table>
-				   	<p class="text-center">共${page.pages}页</p>
-			          <div class="pull-right">
+				   	  </table>
+				   	 <p class="text-center">共${page.pages}页</p>
+			         <div class="pull-right">
 			            <nav aria-label="Page navigation">
 			                <ul class="pagination">
 			                    <li class="page-item">
@@ -81,7 +81,7 @@
 			                </ul>
 			            </nav>
 			        </div>
-			      </div>
+			    </div>
 			</div>
 		</div>
     </div>
