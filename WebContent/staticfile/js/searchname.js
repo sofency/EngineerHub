@@ -2,8 +2,6 @@ function searchname(){
 	console.log("21212")
 	var searchName = $("#searchName").val();//获取搜索的人名
 	var obj = $("#personManage");
-	console.log(obj);
-	console.log(searchName)
 	if(searchName == null){
 		alert("请输入搜索的人名")
 	}else{

@@ -1,13 +1,20 @@
 package com.sofency.ssm.pojo;
 
-public class Engineer {
-    private Integer engineerId;
+import java.io.Serializable;
+
+public class Engineer implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer engineerId;
 
     private String engineerName;
 
     private String engineerImgpath;
 
-    private String engineerSex;
+    private char engineerSex;
 
     private String engineerTel;
 
@@ -45,12 +52,12 @@ public class Engineer {
         this.engineerImgpath = engineerImgpath == null ? null : engineerImgpath.trim();
     }
 
-    public String getEngineerSex() {
+    public int getEngineerSex() {
         return engineerSex;
     }
 
-    public void setEngineerSex(String engineerSex) {
-        this.engineerSex = engineerSex == null ? null : engineerSex.trim();
+    public void setEngineerSex(char engineerSex) {
+        this.engineerSex = engineerSex;
     }
 
     public String getEngineerTel() {

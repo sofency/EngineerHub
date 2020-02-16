@@ -70,7 +70,5 @@
         <!-- 设置默认的静态资源处理方式 -->
         <mvc:default-servlet-handler/> 
         
-         
-        
         
 </beans>

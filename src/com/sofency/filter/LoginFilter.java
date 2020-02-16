@@ -47,7 +47,6 @@ public class LoginFilter implements Filter{
 			}
 		}
 		if(flag) {
-			System.out.println("122121");
 			response.sendRedirect("/EngineerHub/back/candidates/0");
 		}else {
 			chain.doFilter(arg0, arg1);

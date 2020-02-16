@@ -12,9 +12,6 @@ import com.sofency.ssm.service.EngineerService;
 
 public class EngineerServiceImpl implements EngineerService{
 	
-	//每页查询的数据数
-	private static final int SIZE=4;
-	
 	@Autowired
 	private EngineerCustomMapper engineerCustomMapper;
 	
@@ -28,23 +25,10 @@ public class EngineerServiceImpl implements EngineerService{
 	}
 		
 	@Override
-	public List<Engineer> selectEngineerInfo() {
+	public List<Engineer> getAll() {
 		return engineerCustomMapper.getAllEngineerInfo();
 	}
 	
-	@Override
-	public List<Engineer> selectPartEngineerInfo(int page) {
-		// TODO Auto-generated method stub
-		return engineerCustomMapper.findEngineerInfoByPage(page*SIZE);
-	}
-	
-	@Override
-	public Integer getEngineerNum() {
-		// TODO Auto-generated method stub
-		int num = engineerMapper.countByExample(null);
-		return num/SIZE+1;
-	}
-
 	
 	@Override
 	public List<Engineer> findEngineerInfoByName(String username) {
@@ -52,20 +36,27 @@ public class EngineerServiceImpl implements EngineerService{
 	}
 	
 	
-//  测试出现异常
 	@Override
 	public List<EngineersSomeInfo> getEngineersSomeInfo() {
-		/*if(0==0) {
-			try {
-				throw new CustomException("未知错误");
-			} catch (CustomException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}else {*/
-			return engineerCustomMapper.getEngineersSomeInfo();
-		//}
+		return engineerCustomMapper.getEngineersSomeInfo();
 	}
+
+	@Override
+	public Engineer GetInfo(Integer id) {
+		return engineerMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void save(Engineer engineer) {
+		engineerMapper.updateByPrimaryKeySelective(engineer);
+	}
+
+	@Override
+	public int delete(Integer id) {
+		int flag = engineerMapper.deleteByPrimaryKey(id);
+		return flag;
+	}
+	
+	
 	
 }

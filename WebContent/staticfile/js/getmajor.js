@@ -6,10 +6,10 @@ function getmajor(){
 	                 var option;  
 	                 option="<option>"+"请选择你的专业"+"</option>" ; 
 	                 $.each(data,function(i,major){//循环，i为下标从0开始，n为集合中对应的第i个对象  
-	                     option += "<option value='"+major.majorid+"'>"+major.majorname+"</option>"  
+	                     option += "<option id='"+major.majorid+"' value='"+major.majorid+"'>"+major.majorname+"</option>"  
 	                 });  
 	                 $("#candidateMajor").html(option);//将循环拼接的字符串插入第二个下拉列表  
-	                 $("#candidateMajor").show();//把第二个下拉列表展示  
+	                 $("#candidateMajor").show();//把第二个下拉列表展示 
 	         });  
          }
 	}

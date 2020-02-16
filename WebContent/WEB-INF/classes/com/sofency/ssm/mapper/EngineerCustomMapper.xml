@@ -31,8 +31,7 @@
 	
 	
 	<select id="getAllEngineerInfo" resultMap="BaseResultMap">
-		select engineer_id,engineer_sex,engineer_name,engineer_imgpath,engineer_tel,
-		engineer_email,instid,majorid,engineer_motto from engineer
+		select * from engineer
 	</select>
 	
 	<!-- 根据id获取该人员的详细信息 -->
