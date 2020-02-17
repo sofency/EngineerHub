@@ -15,14 +15,30 @@
 	<div style="display:flex;flex-direction: row;width:100%;height:90%">
 		<div class="col-md-2 nav-main">
 			<ul class="text-center">
-	    		<li style="border:1px solid red;"><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0"><span>查看往期荣誉</span></a></li>
-	    		<li style="border:1px solid red;"><a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1"><span>荣誉修改</span></a></li>
+	    		<li>
+	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=0" class="anniu">
+	    				<i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
+	    				<span>查看往期荣誉</span>
+	    			</a>
+	    		</li>
+	    		<li>
+	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=1" class="anniu">
+	    				<i class="fa fa-check" aria-hidden="true"  style="font-size: 1em;margin-right: 10px;"></i>
+	    				<span>荣誉修改</span>
+	    			</a>
+	    		</li>
+	    		<li>
+	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=-1" class="anniu">
+	    				<i class="fa fa-times" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
+	    				<span>添加荣誉</span>
+	    			</a>
+	    		</li>
 	    	</ul>
 		</div>
-		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding-top:10px;">
-			<div class="panel panel-primary">
+		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding:10px;">
+			<div class="panel panel-primary" style="height: 100%;">
 			     <div class="panel-heading">荣誉管理</div>
-			     <div class="panel-body">
+			     <div class="panel-body" style="height: 100%;">
 			         <div class="row my-table-toolbar" style="margin-bottom: 10px;">
 			             <div class="col-xs-4">
 			                 <div class="input-group">
@@ -62,27 +78,24 @@
 			             	</c:forEach>
 			             </tbody>
 			         </table>
-			         <div class="pull-right">
-			             <nav aria-label="Page navigation">
-			                 <ul class="pagination">
-			                     <li>
-			                         <a href="#" aria-label="Previous">
-			                             <span aria-hidden="true">&laquo;</span>
-			                         </a>
-			                     </li>
-			                     <li><a href="#">1</a></li>
-			                     <li><a href="#">2</a></li>
-			                     <li><a href="#">3</a></li>
-			                     <li><a href="#">4</a></li>
-			                     <li><a href="#">5</a></li>
-			                     <li>
-			                         <a href="#" aria-label="Next">
-			                             <span aria-hidden="true">&raquo;</span>
-			                         </a>
-			                     </li>
-			                 </ul>
-			             </nav>
-			         </div>
+			         <p class="text-center">共${page.pages}页</p>
+			          <div class="pull-right">
+			            <nav aria-label="Page navigation">
+			                <ul class="pagination">
+			                    <li class="page-item">
+			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/${page.prePage}"  id="prev" aria-label="Previous">
+			                            <span aria-hidden="true">&laquo;</span>
+			                        </a>
+			                    </li>
+			                   <li class="page-item"><a class="page-link" href="javascript:void(0)">${page.prePage+1}</a></li>
+			                    <li class="page-item">
+			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/${page.nextPage}" id="next" aria-label="Next">
+			                            <span aria-hidden="true">&raquo;</span>
+			                        </a>
+			                    </li>
+			                </ul>
+			            </nav>
+			        </div>
 			     </div>
 			 </div>
 		</div>

@@ -20,8 +20,10 @@ public class EngineerServiceImpl implements EngineerService{
 	
 	//插入工作室人员的信息
 	@Override
-	public int insertEngineer(Engineer engineer) {		
-		return engineerMapper.insert(engineer);
+	public int insertEngineer(Engineer engineer) {	
+		int flag = engineerMapper.insert(engineer);
+		System.out.println("插入数据为flag="+flag+"engineer="+engineer);
+		return flag;
 	}
 		
 	@Override

@@ -21,8 +21,7 @@ function searchname(){
 					var html;
 					$.each(data,function(index,item){
 						var sex = item.engineerSex>1?'女':'男';
-						var content = "<tr><th scope='row' class='text-center'>"+item.engineerId+"</th>"+
-		                 "<td>"+item.engineerName+"</td>"+
+						var content = "<tr><td>"+item.engineerName+"</td>"+
 		                 "<td>"+sex+"</td>"+
 		                 "<td>+"+item.engineerEmail+"</td>"+
 		                 "<td><button class='btn btn-primary'>编辑</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+

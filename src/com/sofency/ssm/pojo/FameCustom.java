@@ -1,7 +1,18 @@
 package com.sofency.ssm.pojo;
 
+import java.util.Date;
+
 public class FameCustom extends Fame{
-	private String engineerName;
+	private String engineerName;//工作人员姓名
+	private Date gettime;//获取时间
+	
+	public Date getGettime() {
+	    return gettime;
+	}
+	
+	public void setGettime(Date gettime) {
+        this.gettime = gettime;
+	}
 
 	public String getEngineerName() {
 		return engineerName;

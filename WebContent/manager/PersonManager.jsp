@@ -42,7 +42,7 @@
 						<c:forEach items="${EngineerCustom}" var="item">
 							<tr>
 				                 <td>${item.engineerName}</td>
-				                 <td>${item.engineerSex>1?"女":"男"}</td>
+				                 <td>${item.engineerSex>"1"?"女":"男"}</td>
 				                 <td>${item.engineerEmail}</td>
 				                 <td>
 				                     <button class="btn btn-primary" onclick="edit(${item.engineerId})" id="editInfo" data-toggle="modal" data-target="#chooseIndex"><span>编辑</span></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -98,10 +98,10 @@
 						   <label  class="col-sm-2 control-label">性别:</label>
 						   <div class="col-sm-10">
 						  	   	<label class="radio-inline">
-								<input type="radio" name="candidateSex" id="inlineRadio1" value="1"> 男
+								<input type="radio" name="engineerSex" id="inlineRadio1" value="1"> 男
 								</label>
 								<label class="radio-inline">
-								  <input type="radio" name="candidateSex" id="inlineRadio2" value="2"> 女
+								  <input type="radio" name="engineerSex" id="inlineRadio2" value="2"> 女
 								</label>
 						   </div> 
 					  </div>
@@ -173,8 +173,10 @@
 <script type="text/javascript">
 function add_info(){
 	$("#engineerform").submit();
+	alert($("input[type='radio']:checked").val())
 	//关闭模态框
 	$('#chooseIndex').modal('hide')
+	window.location.reload();
 }
 //添加信息
 $("#addInfo").click(function(){
@@ -204,9 +206,10 @@ function edit(id){
 	$.get("/EngineerHub/back/GetInfo/"+id,function(data){
 		$("#engineerform").attr("action","http://localhost:9999/EngineerHub/back/save");
 		$("#engineer_name").val(data.engineerName);
-		if(data.engineer_sex==1){
+		alert(data.engineerSex)
+		if(data.engineerSex==1){
 			$("#inlineRadio1").attr("checked","checked");
-		}else{
+		}else if(data.engineerSex==2){
 			$("#inlineRadio2").attr("checked","checked");
 		}
 		$("#engineer_id").val(data.engineerId);

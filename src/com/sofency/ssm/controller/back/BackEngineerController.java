@@ -2,6 +2,7 @@ package com.sofency.ssm.controller.back;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,12 +29,13 @@ import com.sofency.ssm.pojo.Engineer;
 import com.sofency.ssm.pojo.Institude;
 import com.sofency.ssm.service.EngineerService;
 import com.sofency.ssm.service.InstitudeMajorService;
+import com.sofency.utils.DateUtil;
 
 @Controller
 @RequestMapping("/back")
 public class BackEngineerController {
 	
-	 private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private EngineerService engineerService;
 	
@@ -72,16 +74,19 @@ public class BackEngineerController {
 	        String originalName = file.getOriginalFilename(); 
 	        String uuidName = UUID.randomUUID().toString(); 
 	        newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
-	        File imageFile = new File(realPath + "/"+newImageName);  
+	        File imageFile = new File(realPath + "\\"+newImageName);  
 	        file.transferTo(imageFile); 
 		}
-        engineer.setEngineerImgpath(new String(realPath + "/"+newImageName));
-        int flag = engineerService.insertEngineer(engineer);
-        if(flag>=0) {
-        	return "true";
-        }else {
-        	return "false";
-        }
+       System.out.println(engineer.getEngineerSex()+"sex");
+       engineer.setEngineerImgpath(new String(realPath + "\\"+newImageName));
+       int flag = engineerService.insertEngineer(engineer);
+       
+       LOG.info(DateUtil.getCurrentTime()+"--执行了插入操作"+engineer.toString());
+       if(flag>=0) {
+       	 return "true";
+       }else {
+       	 return "false";
+       }
    }
 
    //根据名字查找用户
@@ -89,12 +94,14 @@ public class BackEngineerController {
 	@ResponseBody
 	public List<Engineer> findEngineerInfoByName(HttpServletRequest request,@PathVariable("name") String username){
 		List<Engineer> list = engineerService.findEngineerInfoByName(username);
+		LOG.info(DateUtil.getCurrentTime()+": 根据名字模糊查找了"+username);
 		return list;
 	}	
 	
 	@RequestMapping("/GetInfo/{id}")
 	@ResponseBody
 	public Engineer GetInfo(@PathVariable("id") Integer id) {
+		LOG.info(DateUtil.getCurrentTime()+": 根据id"+id+"查找用户");
 		return engineerService.GetInfo(id);
 	}
 	
@@ -117,7 +124,7 @@ public class BackEngineerController {
 		}
         engineer.setEngineerImgpath(new String(realPath + "/"+newImageName));
         engineerService.save(engineer);		
-        LOG.info("更新人员信息"+engineer);
+        LOG.info(DateUtil.getCurrentTime()+"更新人员信息"+engineer);
         return "true";
 	}
 	
@@ -125,6 +132,7 @@ public class BackEngineerController {
 	@DeleteMapping("/delete/{id}")
 	public String deleteInfo(@PathVariable("id") Integer id) {
 		int flag = engineerService.delete(id);
+		LOG.info(DateUtil.getCurrentTime()+"删除用户id="+id);
 		if(flag>=0) {
 			return "true";
 		}else {

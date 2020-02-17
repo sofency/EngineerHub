@@ -5,7 +5,7 @@
 	    <id column="engineer_id" property="engineerId" jdbcType="INTEGER" />
 	    <result column="engineer_name" property="engineerName" jdbcType="VARCHAR" />
 	    <result column="engineer_imgPath" property="engineerImgpath" jdbcType="VARCHAR" />
-	    <result column="engineer_sex" property="engineerSex" jdbcType="CHAR" />
+	    <result column="engineer_sex" property="engineerSex" jdbcType="VARCHAR" />
 	    <result column="engineer_tel" property="engineerTel" jdbcType="CHAR" />
 	    <result column="engineer_email" property="engineerEmail" jdbcType="VARCHAR" />
 	    <result column="instid" property="instid" jdbcType="INTEGER" />

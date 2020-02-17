@@ -14,7 +14,7 @@ public class Engineer implements Serializable{
 
     private String engineerImgpath;
 
-    private char engineerSex;
+    private String engineerSex;
 
     private String engineerTel;
 
@@ -52,11 +52,11 @@ public class Engineer implements Serializable{
         this.engineerImgpath = engineerImgpath == null ? null : engineerImgpath.trim();
     }
 
-    public int getEngineerSex() {
+    public String getEngineerSex() {
         return engineerSex;
     }
 
-    public void setEngineerSex(char engineerSex) {
+    public void setEngineerSex(String engineerSex) {
         this.engineerSex = engineerSex;
     }
 
@@ -107,4 +107,13 @@ public class Engineer implements Serializable{
     public void setEngineerGit(String engineerGit) {
         this.engineerGit = engineerGit == null ? null : engineerGit.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Engineer [engineerId=" + engineerId + ", engineerName=" + engineerName + ", engineerImgpath="
+				+ engineerImgpath + ", engineerSex=" + engineerSex + ", engineerTel=" + engineerTel + ", engineerEmail="
+				+ engineerEmail + ", instid=" + instid + ", majorid=" + majorid + ", engineerMotto=" + engineerMotto
+				+ ", engineerGit=" + engineerGit + "]";
+	}
+    
 }

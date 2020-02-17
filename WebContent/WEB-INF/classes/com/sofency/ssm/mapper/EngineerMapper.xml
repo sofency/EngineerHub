@@ -5,7 +5,7 @@
     <id column="engineer_id" property="engineerId" jdbcType="INTEGER" />
     <result column="engineer_name" property="engineerName" jdbcType="VARCHAR" />
     <result column="engineer_imgPath" property="engineerImgpath" jdbcType="VARCHAR" />
-    <result column="engineer_sex" property="engineerSex" jdbcType="CHAR" />
+    <result column="engineer_sex" property="engineerSex" jdbcType="VARCHAR" />
     <result column="engineer_tel" property="engineerTel" jdbcType="CHAR" />
     <result column="engineer_email" property="engineerEmail" jdbcType="VARCHAR" />
     <result column="instid" property="instid" jdbcType="INTEGER" />
@@ -160,7 +160,7 @@
         #{engineerImgpath,jdbcType=VARCHAR},
       </if>
       <if test="engineerSex != null" >
-        #{engineerSex,jdbcType=CHAR},
+        #{engineerSex,jdbcType=VARCHAR},
       </if>
       <if test="engineerTel != null" >
         #{engineerTel,jdbcType=CHAR},
@@ -201,7 +201,7 @@
         engineer_imgPath = #{record.engineerImgpath,jdbcType=VARCHAR},
       </if>
       <if test="record.engineerSex != null" >
-        engineer_sex = #{record.engineerSex,jdbcType=CHAR},
+        engineer_sex = #{record.engineerSex,jdbcType=VARCHAR},
       </if>
       <if test="record.engineerTel != null" >
         engineer_tel = #{record.engineerTel,jdbcType=CHAR},
@@ -231,7 +231,7 @@
     set engineer_id = #{record.engineerId,jdbcType=INTEGER},
       engineer_name = #{record.engineerName,jdbcType=VARCHAR},
       engineer_imgPath = #{record.engineerImgpath,jdbcType=VARCHAR},
-      engineer_sex = #{record.engineerSex,jdbcType=CHAR},
+      engineer_sex = #{record.engineerSex,jdbcType=VARCHAR},
       engineer_tel = #{record.engineerTel,jdbcType=CHAR},
       engineer_email = #{record.engineerEmail,jdbcType=VARCHAR},
       instid = #{record.instid,jdbcType=INTEGER},
@@ -252,7 +252,7 @@
         engineer_imgPath = #{engineerImgpath,jdbcType=VARCHAR},
       </if>
       <if test="engineerSex != null" >
-        engineer_sex = #{engineerSex,jdbcType=CHAR},
+        engineer_sex = #{engineerSex,jdbcType=VARCHAR},
       </if>
       <if test="engineerTel != null" >
         engineer_tel = #{engineerTel,jdbcType=CHAR},
@@ -279,7 +279,7 @@
     update engineer
     set engineer_name = #{engineerName,jdbcType=VARCHAR},
       engineer_imgPath = #{engineerImgpath,jdbcType=VARCHAR},
-      engineer_sex = #{engineerSex,jdbcType=CHAR},
+      engineer_sex = #{engineerSex,jdbcType=VARCHAR},
       engineer_tel = #{engineerTel,jdbcType=CHAR},
       engineer_email = #{engineerEmail,jdbcType=VARCHAR},
       instid = #{instid,jdbcType=INTEGER},
