@@ -101,7 +101,7 @@
 								<input type="radio" name="engineerSex" id="inlineRadio1" value="1"> 男
 								</label>
 								<label class="radio-inline">
-								  <input type="radio" name="engineerSex" id="inlineRadio2" value="2"> 女
+								  <input type="radio" name="candidateSex" id="inlineRadio2" value="2"> 女
 								</label>
 						   </div> 
 					  </div>
@@ -146,7 +146,7 @@
                          <label for="engineer_imgPath" class="col-sm-2 control-label">照片</label>
                          <div class="col-sm-10">
                              <input type="file" class="form-control-file" id="engineer_imgPath" name="file" onchange="changepic(this)">
-                             <img src="" id="show" width="100" height="100"id="imgsrc">
+                             <img src="" width="100" height="100"id="imgsrc">
                          </div>
                      </div>
                      <div class="form-group">
@@ -173,7 +173,6 @@
 <script type="text/javascript">
 function add_info(){
 	$("#engineerform").submit();
-	alert($("input[type='radio']:checked").val())
 	//关闭模态框
 	$('#chooseIndex').modal('hide')
 	window.location.reload();
@@ -195,7 +194,7 @@ function changepic(obj){
      f=document.getElementById('engineer_imgPath').files[0];
      reads.readAsDataURL(f);
      reads.onload=function (e) {
-         document.getElementById('show').src=this.result;
+         document.getElementById('imgsrc').src=this.result;
      };
 }
 
@@ -206,7 +205,6 @@ function edit(id){
 	$.get("/EngineerHub/back/GetInfo/"+id,function(data){
 		$("#engineerform").attr("action","http://localhost:9999/EngineerHub/back/save");
 		$("#engineer_name").val(data.engineerName);
-		alert(data.engineerSex)
 		if(data.engineerSex==1){
 			$("#inlineRadio1").attr("checked","checked");
 		}else if(data.engineerSex==2){
@@ -227,6 +225,7 @@ function edit(id){
 		$("#candidateMajor option[id="+data.majorid+"]").attr("selected",true);
 		
 		$("#imgsrc").attr("src",data.engineerImgpath);
+		console.log(data.engineerImgpath)
 		$("#engineer_motto").val(data.engineerMotto);
 		$("#submitForm").attr("value","修改");
 	})

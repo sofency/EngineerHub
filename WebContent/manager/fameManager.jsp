@@ -8,34 +8,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
  <div style="height:100%;height:100%; background-color: #f1f2f6">
 	<%@include file="../common/header.jspf"%>
-	<div style="display:flex;flex-direction: row;width:100%;height:90%">
-		<div class="col-md-2 nav-main">
-			<ul class="text-center">
-	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=0" class="anniu">
-	    				<i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
-	    				<span>查看往期荣誉</span>
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=1" class="anniu">
-	    				<i class="fa fa-check" aria-hidden="true"  style="font-size: 1em;margin-right: 10px;"></i>
-	    				<span>荣誉修改</span>
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?status=-1" class="anniu">
-	    				<i class="fa fa-times" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
-	    				<span>添加荣誉</span>
-	    			</a>
-	    		</li>
-	    	</ul>
-		</div>
-		<div  class="col-md-9" style="flex-grow: 0.8; margin-top:10px;margin-left:10px;border-radius: 10px;height:70%;background-color: #ffffff;padding:10px;">
+    <div class="row">
+	<div class="col-md-8 col-md-offset-2" style="flex-grow: 0.8; margin-top:10px;border-radius: 10px;height:60%;background-color: #ffffff;padding:10px;">
 			<div class="panel panel-primary" style="height: 100%;">
 			     <div class="panel-heading">荣誉管理</div>
 			     <div class="panel-body" style="height: 100%;">

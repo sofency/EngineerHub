@@ -64,22 +64,18 @@ public class BackEngineerController {
 	@PostMapping("/insertEngineer")
 	public String insertEngineer(HttpServletRequest request,MultipartFile file,Engineer engineer) throws IllegalStateException, IOException {
 		//接受多个文件
-		String newImageName = null;
-		String realPath = "H:\\temp"; 
-        if (!file.isEmpty()) {    
-	        File filePath = new File(realPath);//存储文件的路径
-	        if(!filePath.exists()) {
-	        	filePath.mkdir();
-	        }
-	        String originalName = file.getOriginalFilename(); 
-	        String uuidName = UUID.randomUUID().toString(); 
-	        newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
-	        File imageFile = new File(realPath + "\\"+newImageName);  
-	        file.transferTo(imageFile); 
-		}
-       System.out.println(engineer.getEngineerSex()+"sex");
-       engineer.setEngineerImgpath(new String(realPath + "\\"+newImageName));
-       int flag = engineerService.insertEngineer(engineer);
+	   String newImageName = null;
+	   if(!file.isEmpty()) {
+		   String originalName = file.getOriginalFilename(); 
+	       String uuidName = UUID.randomUUID().toString(); 
+	       newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
+	       File imageFile = new File("H:\\eclipse_workspace\\EngineerHub\\WebContent\\staticfile\\img\\"+newImageName);  
+	       file.transferTo(imageFile); 
+		
+	       engineer.setEngineerImgpath(new String("/EngineerHub/staticfile/img/" +newImageName));
+	      
+	   }
+	   int flag = engineerService.insertEngineer(engineer);
        
        LOG.info(DateUtil.getCurrentTime()+"--执行了插入操作"+engineer.toString());
        if(flag>=0) {
@@ -110,19 +106,14 @@ public class BackEngineerController {
 	public String keepInfo(Engineer engineer,MultipartFile file) throws IllegalStateException, IOException {
 		//接受多个文件
 		String newImageName = null;
-		String realPath = "H:\\temp"; 
-        if (!file.isEmpty()) {    
-	        File filePath = new File(realPath);//存储文件的路径
-	        if(!filePath.exists()) {
-	        	filePath.mkdir();
-	        }
-	        String originalName = file.getOriginalFilename(); 
-	        String uuidName = UUID.randomUUID().toString(); 
-	        newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
-	        File imageFile = new File(realPath + "/"+newImageName);  
-	        file.transferTo(imageFile); 
-		}
-        engineer.setEngineerImgpath(new String(realPath + "/"+newImageName));
+	
+        String originalName = file.getOriginalFilename(); 
+        String uuidName = UUID.randomUUID().toString(); 
+        newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
+        File imageFile = new File("H:\\eclipse_workspace\\EngineerHub\\WebContent\\staticfile\\img\\"+newImageName);   
+        file.transferTo(imageFile); 
+	
+        engineer.setEngineerImgpath(new String("/EngineerHub/staticfile/img/" + "/"+newImageName));
         engineerService.save(engineer);		
         LOG.info(DateUtil.getCurrentTime()+"更新人员信息"+engineer);
         return "true";
