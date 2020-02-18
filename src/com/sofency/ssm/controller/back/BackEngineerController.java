@@ -129,9 +129,9 @@ public class BackEngineerController {
         file.transferTo(imageFile); 
         engineer.setEngineerImgpath(new String("/EngineerHub/staticfile/img/" + "/"+newImageName));
         engineerService.save(engineer);		
-        //删除缓存中的数据就删除
+        //删除缓存中的数据就重新设置
         if(redisTemplate.hasKey("engineer"+engineer.getEngineerId())){
-        	redisTemplate.delete("engineer"+engineer.getEngineerId());
+        	redisTemplate.opsForValue().set("engineer"+engineer.getEngineerId(),engineer);
         }
         LOG.info(DateUtil.getCurrentTime()+"更新人员信息"+engineer);
         return "true";
