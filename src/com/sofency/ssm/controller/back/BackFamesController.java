@@ -16,7 +16,7 @@ import com.sofency.utils.DateUtil;
 @Controller
 @RequestMapping("/back")
 public class BackFamesController {
-	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final Logger LOG = LoggerFactory.getLogger(BackFamesController.class);
 	
 	@Autowired
 	private FameService fameService;

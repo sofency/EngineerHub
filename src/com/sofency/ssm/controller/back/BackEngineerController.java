@@ -35,7 +35,7 @@ import com.sofency.utils.DateUtil;
 @RequestMapping("/back")
 public class BackEngineerController {
 	
-	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final Logger LOG = LoggerFactory.getLogger(BackEngineerController.class);
 	@Autowired
 	private EngineerService engineerService;
 	

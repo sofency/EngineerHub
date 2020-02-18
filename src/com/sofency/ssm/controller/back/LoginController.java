@@ -23,7 +23,7 @@ import com.sofency.utils.MD5Utils;
 @Controller
 public class LoginController {
 	
-	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final Logger LOG = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private LoginService loginService;
 	

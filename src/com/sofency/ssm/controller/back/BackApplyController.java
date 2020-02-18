@@ -28,7 +28,7 @@ import com.sofency.utils.DateUtil;
 @Controller
 @RequestMapping("/back")
 public class BackApplyController {
-	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final Logger LOG = LoggerFactory.getLogger(BackApplyController.class);
 	@Autowired
 	private CandidateService candidateService;
 	
