@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,6 +43,10 @@ public class BackEngineerController {
 	@Autowired
 	private InstitudeMajorService institudeMajorService;
 	
+	
+	@Autowired
+	private  RedisTemplate<Object, Engineer> redisTemplate;
+	
 	//查询工作室人员的信息返回到官网的后端
 	@GetMapping("/engineers/{page}")
 	public ModelAndView showEngineerInfoToManager(@PathVariable("page")int page) {
@@ -72,7 +77,6 @@ public class BackEngineerController {
 	       newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
 	       File imageFile = new File("H:\\eclipse_workspace\\EngineerHub\\WebContent\\staticfile\\img\\"+newImageName);  
 	       file.transferTo(imageFile); 
-		
 	       engineer.setEngineerImgpath(new String("/EngineerHub/staticfile/img/" +newImageName));
 	      
 	   }
@@ -98,8 +102,18 @@ public class BackEngineerController {
 	@RequestMapping("/GetInfo/{id}")
 	@ResponseBody
 	public Engineer GetInfo(@PathVariable("id") Integer id) {
-		LOG.info(DateUtil.getCurrentTime()+": 根据id"+id+"查找用户");
-		return engineerService.GetInfo(id);
+		
+		//首先在redis中查找用户
+		Engineer engineer = (Engineer) redisTemplate.opsForValue().get("engineer"+id);
+		if(engineer==null) {
+			engineer = engineerService.GetInfo(id);
+			LOG.info(DateUtil.getCurrentTime()+": 根据id"+id+"向数据库中查询用户");
+			//存储到Redis中
+			redisTemplate.opsForValue().set("engineer"+id, engineer);
+		}else {
+			LOG.info(DateUtil.getCurrentTime()+": 根据id"+id+"向缓存中查询用户");
+		}
+		return engineer;
 	}
 	
 	@RequestMapping("/save")
@@ -113,9 +127,12 @@ public class BackEngineerController {
         newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));  
         File imageFile = new File("H:\\eclipse_workspace\\EngineerHub\\WebContent\\staticfile\\img\\"+newImageName);   
         file.transferTo(imageFile); 
-	
         engineer.setEngineerImgpath(new String("/EngineerHub/staticfile/img/" + "/"+newImageName));
         engineerService.save(engineer);		
+        //删除缓存中的数据就删除
+        if(redisTemplate.hasKey("engineer"+engineer.getEngineerId())){
+        	redisTemplate.delete("engineer"+engineer.getEngineerId());
+        }
         LOG.info(DateUtil.getCurrentTime()+"更新人员信息"+engineer);
         return "true";
 	}
@@ -124,6 +141,9 @@ public class BackEngineerController {
 	@DeleteMapping("/delete/{id}")
 	public String deleteInfo(@PathVariable("id") Integer id) {
 		int flag = engineerService.delete(id);
+		if(redisTemplate.hasKey("engineer"+id)){//删除engineer+id的缓存
+	       	redisTemplate.delete("engineer"+id);
+	    }
 		LOG.info(DateUtil.getCurrentTime()+"删除用户id="+id);
 		if(flag>=0) {
 			return "true";

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
+import com.sofency.ssm.pojo.Engineer;
 import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.SendMailUtilService;
 import com.sofency.utils.DateUtil;
@@ -35,10 +37,13 @@ public class BackApplyController {
 	@Autowired
 	private SendMailUtilService sendMailUtilService;
 	
+	@Autowired
+	private  RedisTemplate<Object, Object> redisTemplate;
+	
 	@GetMapping("/getCandidates")
 	public ModelAndView selectCandidateList(@RequestParam(required=true,defaultValue="1") Integer page,Byte status) {
 		ModelAndView model = new ModelAndView();
-		List<Candidate> list=candidateService.getCandidateList(status);//获取状态的信息
+		
 		PageHelper.startPage(page, 5);
 	    List<Candidate> candidates = candidateService.getCandidates(page, status);
 	    PageInfo<Candidate> p=new PageInfo<Candidate>(candidates);
@@ -59,15 +64,27 @@ public class BackApplyController {
 	//根据id查找申请者的数据
 	@GetMapping("/candidate/{id}")
 	@ResponseBody
-	public  Candidate searchApplicationdetail(@PathVariable("id")Integer candidateId) {
-		CandidateCustomExample candidate= candidateService.selectCandidateInfo(candidateId);
-		LOG.info(DateUtil.getCurrentTime()+"查询id为"+candidateId+"人员的信息");
+	public  CandidateCustomExample searchApplicationdetail(@PathVariable("id")Integer candidateId) {
+		CandidateCustomExample candidate=null;
+		//先从缓存中查找信息
+		if(redisTemplate.hasKey("candidateCustomExample"+candidateId)) {
+			candidate=(CandidateCustomExample) redisTemplate.opsForValue().get("candidateCustomExample"+candidateId);
+			LOG.info(DateUtil.getCurrentTime()+"从缓存中查询id为"+candidateId+"人员的信息");
+		}else {
+			candidate= candidateService.selectCandidateInfo(candidateId);
+			LOG.info(DateUtil.getCurrentTime()+"从数据库中查询id为"+candidateId+"人员的信息");
+			redisTemplate.opsForValue().set("candidateCustomExample"+candidateId, candidate);//添加到缓存中
+		}
 		return candidate;
 	}
 	
 	@DeleteMapping(value="/candidate/{id}")
 	public String deleteCandidate(@PathVariable("id") Integer candidateId) {
 		candidateService.deleteCandidate(candidateId);
+		if(redisTemplate.hasKey("candidate"+candidateId)) {//删除缓存中的数据
+			redisTemplate.delete("candidate"+candidateId);
+		}
+		
 		LOG.info(DateUtil.getCurrentTime()+"删除id为"+candidateId+"人员的信息");		
 		return "redirect:/back/getCandidates.action?status=-1";
 	}
