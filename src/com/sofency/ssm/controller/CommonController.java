@@ -57,7 +57,6 @@ public class CommonController {
 			}
 			redisTemplate.opsForHash().putAll("major:"+code, map);
 		}
-		
 		return list;
 	}
 	

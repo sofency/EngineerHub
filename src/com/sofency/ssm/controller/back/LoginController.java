@@ -5,34 +5,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mysql.cj.log.Log;
 import com.sofency.ssm.pojo.Manager;
 import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.LoginService;
+import com.sofency.utils.DateUtil;
 import com.sofency.utils.MD5Utils;
 
 
 @Controller
 public class LoginController {
 	
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private LoginService loginService;
 	
+	private String username;
 	//登录成功
 	@RequestMapping("/login")
 	public String login(Model model,Manager manager,HttpServletRequest request,HttpServletResponse response) {
-		String username= manager.getUsername();
+		username= manager.getUsername();
 		String userPwd = manager.getUserpwd();
 		
 		String md5pwd= MD5Utils.md5(userPwd);//加密后的密码
-		System.out.println(md5pwd);
+
 		HttpSession session = request.getSession();//获取session
 		String remember = request.getParameter("remember");
-		System.out.println("login");
+		
 		//根据账户查找密码
 		String realPassword = loginService.getPassword(username);
 		System.out.println("加密后的密码是"+realPassword);
@@ -44,6 +50,7 @@ public class LoginController {
 				cookie.setPath("/");
 				response.addCookie(cookie);//添加cookie
 			}
+			LOG.info(DateUtil.getCurrentTime()+"--"+username+"登录后台");
 			return "redirect:/back/getCandidates.action?page=0&&status=0";//未处理
 		}else {
 			model.addAttribute("flag", "密码或者账户错误");
@@ -56,6 +63,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		//将session注销 并且返回到登录界面
 		session.invalidate();
+		LOG.info(DateUtil.getCurrentTime()+"--"+username+"退出后台");
 		return "redirect:login.jsp";
 	}
 }

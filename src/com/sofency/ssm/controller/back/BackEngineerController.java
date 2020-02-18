@@ -56,6 +56,7 @@ public class BackEngineerController {
 		model.addObject("EngineerCustom", list);
 		model.addObject("institudes", institudes);//获取院系
 		model.setViewName("manager/PersonManager");
+		LOG.info(DateUtil.getCurrentTime()+"查询工作时人员信息");
 		return model;
 	}
 	

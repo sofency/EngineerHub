@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,10 +23,12 @@ import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
 import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.SendMailUtilService;
+import com.sofency.utils.DateUtil;
 
 @Controller
 @RequestMapping("/back")
 public class BackApplyController {
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private CandidateService candidateService;
 	
@@ -40,6 +44,8 @@ public class BackApplyController {
 	    PageInfo<Candidate> p=new PageInfo<Candidate>(candidates);
 	    model.addObject("page",p);
 	    model.addObject("Candidate", candidates);
+	    
+	    LOG.info(DateUtil.getCurrentTime()+"查询申请人");
 	    if(status==0) {
 	    	model.setViewName("manager/applicationManage");
 	    }else if(status==1){
@@ -55,13 +61,14 @@ public class BackApplyController {
 	@ResponseBody
 	public  Candidate searchApplicationdetail(@PathVariable("id")Integer candidateId) {
 		CandidateCustomExample candidate= candidateService.selectCandidateInfo(candidateId);
-		System.out.println(candidate.toString());
+		LOG.info(DateUtil.getCurrentTime()+"查询id为"+candidateId+"人员的信息");
 		return candidate;
 	}
 	
 	@DeleteMapping(value="/candidate/{id}")
 	public String deleteCandidate(@PathVariable("id") Integer candidateId) {
 		candidateService.deleteCandidate(candidateId);
+		LOG.info(DateUtil.getCurrentTime()+"删除id为"+candidateId+"人员的信息");		
 		return "redirect:/back/getCandidates.action?status=-1";
 	}
 	
@@ -79,6 +86,7 @@ public class BackApplyController {
 			String username = candidate.getCandidateName();
 			//然后发送邮件
 			sendMailUtilService.sendMail(email, username);
+			LOG.info(DateUtil.getCurrentTime()+"向id为"+candidateId+"申请人发送邮件");
 		}
 		if(flag>=0) {
 			return "true";
