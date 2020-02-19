@@ -1,7 +1,14 @@
 package com.sofency.ssm.pojo;
 
-public class Candidate {
-    private Integer candidateId;
+import java.io.Serializable;
+
+public class Candidate implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer candidateId;
 
     private Integer instid;
 

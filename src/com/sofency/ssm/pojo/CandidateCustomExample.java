@@ -1,6 +1,12 @@
 package com.sofency.ssm.pojo;
 
-public class CandidateCustomExample extends Candidate{
+import java.io.Serializable;
+
+public class CandidateCustomExample extends Candidate implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//院系
 	private String instname;
 	//专业

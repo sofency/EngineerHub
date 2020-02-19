@@ -1,7 +1,14 @@
 package com.sofency.ssm.pojo;
 
-public class Manager {
-    private Integer managerid;
+import java.io.Serializable;
+
+public class Manager implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer managerid;
 
     private String username;
 

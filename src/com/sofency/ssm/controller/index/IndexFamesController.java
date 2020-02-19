@@ -23,17 +23,18 @@ public class IndexFamesController {
 	
 	@Autowired
 	private  RedisTemplate<Object, Fame> redisTemplate;
+	
 	@RequestMapping("/showfames")
 	public ModelAndView showFames() {
 		ModelAndView modelAndView = new ModelAndView();
 		//首先从缓存中拿取数据
 		List<Fame> famesList =null;
-		if(redisTemplate.hasKey("fames")) {
+		if(redisTemplate.hasKey("fames:list")) {
 			famesList = redisTemplate.opsForList().range("fames", 0, -1);
 			LOG.info("\n"+DateUtil.getCurrentTime()+"从缓存中拿取荣誉信息");
 		}else {
 			famesList = fameService.getFamesList();
-			redisTemplate.opsForList().leftPushAll("fames", famesList);
+			redisTemplate.opsForList().leftPushAll("fames:list", famesList);
 			LOG.info("\n"+DateUtil.getCurrentTime()+"从数据库中拿取荣誉信息");
 		}
 		modelAndView.addObject("fames", famesList);
