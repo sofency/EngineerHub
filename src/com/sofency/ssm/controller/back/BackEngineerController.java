@@ -61,7 +61,7 @@ public class BackEngineerController {
 		model.addObject("EngineerCustom", list);
 		model.addObject("institudes", institudes);//获取院系
 		model.setViewName("manager/PersonManager");
-		LOG.info(DateUtil.getCurrentTime()+"查询工作时人员信息");
+		LOG.info("\n"+DateUtil.getCurrentTime()+"查询工作时人员信息");
 		return model;
 	}
 	
@@ -82,7 +82,7 @@ public class BackEngineerController {
 	   }
 	   int flag = engineerService.insertEngineer(engineer);
        
-       LOG.info(DateUtil.getCurrentTime()+"--执行了插入操作"+engineer.toString());
+       LOG.info("\n"+DateUtil.getCurrentTime()+"--执行了插入操作"+engineer.toString());
        if(flag>=0) {
        	 return "true";
        }else {
@@ -95,7 +95,7 @@ public class BackEngineerController {
 	@ResponseBody
 	public List<Engineer> findEngineerInfoByName(HttpServletRequest request,@PathVariable("name") String username){
 		List<Engineer> list = engineerService.findEngineerInfoByName(username);
-		LOG.info(DateUtil.getCurrentTime()+": 根据名字模糊查找了"+username);
+		LOG.info("\n"+DateUtil.getCurrentTime()+": 根据名字模糊查找了"+username);
 		return list;
 	}	
 	
@@ -107,11 +107,11 @@ public class BackEngineerController {
 		Engineer engineer = (Engineer) redisTemplate.opsForValue().get("engineer"+id);
 		if(engineer==null) {
 			engineer = engineerService.GetInfo(id);
-			LOG.info(DateUtil.getCurrentTime()+": 根据id"+id+"向数据库中查询用户");
+			LOG.info("\n"+DateUtil.getCurrentTime()+": 根据id"+id+"向数据库中查询用户");
 			//存储到Redis中
 			redisTemplate.opsForValue().set("engineer"+id, engineer);
 		}else {
-			LOG.info(DateUtil.getCurrentTime()+": 根据id"+id+"向缓存中查询用户");
+			LOG.info("\n"+DateUtil.getCurrentTime()+": 根据id"+id+"向缓存中查询用户");
 		}
 		return engineer;
 	}
@@ -133,7 +133,7 @@ public class BackEngineerController {
         if(redisTemplate.hasKey("engineer"+engineer.getEngineerId())){
         	redisTemplate.opsForValue().set("engineer"+engineer.getEngineerId(),engineer);
         }
-        LOG.info(DateUtil.getCurrentTime()+"更新人员信息"+engineer);
+        LOG.info("\n"+DateUtil.getCurrentTime()+"更新人员信息"+engineer);
         return "true";
 	}
 	
@@ -144,7 +144,7 @@ public class BackEngineerController {
 		if(redisTemplate.hasKey("engineer"+id)){//删除engineer+id的缓存
 	       	redisTemplate.delete("engineer"+id);
 	    }
-		LOG.info(DateUtil.getCurrentTime()+"删除用户id="+id);
+		LOG.info("\n"+DateUtil.getCurrentTime()+"删除用户id="+id);
 		if(flag>=0) {
 			return "true";
 		}else {

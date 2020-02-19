@@ -50,7 +50,7 @@ public class LoginController {
 				cookie.setPath("/");
 				response.addCookie(cookie);//添加cookie
 			}
-			LOG.info(DateUtil.getCurrentTime()+"--"+username+"登录后台");
+			LOG.info("\n"+DateUtil.getCurrentTime()+"--"+username+"登录后台");
 			return "redirect:/back/getCandidates.action?page=0&&status=0";//未处理
 		}else {
 			model.addAttribute("flag", "密码或者账户错误");
@@ -63,7 +63,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		//将session注销 并且返回到登录界面
 		session.invalidate();
-		LOG.info(DateUtil.getCurrentTime()+"--"+username+"退出后台");
+		LOG.info("\n"+DateUtil.getCurrentTime()+"--"+username+"退出后台");
 		return "redirect:login.jsp";
 	}
 }

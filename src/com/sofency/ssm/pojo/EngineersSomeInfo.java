@@ -1,7 +1,14 @@
 package com.sofency.ssm.pojo;
 
-public class EngineersSomeInfo {
-   private String engineerName;
+import java.io.Serializable;
+
+public class EngineersSomeInfo implements Serializable{
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+private String engineerName;
 
    private String engineerImgpath;
    

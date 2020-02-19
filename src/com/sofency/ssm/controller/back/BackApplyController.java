@@ -2,8 +2,6 @@ package com.sofency.ssm.controller.back;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
-import com.sofency.ssm.pojo.Engineer;
 import com.sofency.ssm.service.CandidateService;
 import com.sofency.ssm.service.SendMailUtilService;
 import com.sofency.utils.DateUtil;
@@ -69,10 +66,10 @@ public class BackApplyController {
 		//先从缓存中查找信息
 		if(redisTemplate.hasKey("candidateCustomExample"+candidateId)) {
 			candidate=(CandidateCustomExample) redisTemplate.opsForValue().get("candidateCustomExample"+candidateId);
-			LOG.info(DateUtil.getCurrentTime()+"从缓存中查询id为"+candidateId+"人员的信息");
+			LOG.info("\n"+DateUtil.getCurrentTime()+"从缓存中查询id为"+candidateId+"人员的信息");
 		}else {
 			candidate= candidateService.selectCandidateInfo(candidateId);
-			LOG.info(DateUtil.getCurrentTime()+"从数据库中查询id为"+candidateId+"人员的信息");
+			LOG.info("\n"+DateUtil.getCurrentTime()+"从数据库中查询id为"+candidateId+"人员的信息");
 			redisTemplate.opsForValue().set("candidateCustomExample"+candidateId, candidate);//添加到缓存中
 		}
 		return candidate;
@@ -85,7 +82,7 @@ public class BackApplyController {
 			redisTemplate.delete("candidate"+candidateId);
 		}
 		
-		LOG.info(DateUtil.getCurrentTime()+"删除id为"+candidateId+"人员的信息");		
+		LOG.info("\n"+DateUtil.getCurrentTime()+"删除id为"+candidateId+"人员的信息");		
 		return "redirect:/back/getCandidates.action?status=-1";
 	}
 	
@@ -103,7 +100,7 @@ public class BackApplyController {
 			String username = candidate.getCandidateName();
 			//然后发送邮件
 			sendMailUtilService.sendMail(email, username);
-			LOG.info(DateUtil.getCurrentTime()+"向id为"+candidateId+"申请人发送邮件");
+			LOG.info("\n"+DateUtil.getCurrentTime()+"向id为"+candidateId+"申请人发送邮件");
 		}
 		if(flag>=0) {
 			return "true";

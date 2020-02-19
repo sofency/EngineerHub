@@ -29,7 +29,7 @@ public class BackFamesController {
 		System.out.println(fames);
 		modelAndView.addObject("famesCustom", fames);
 		modelAndView.setViewName("manager/fameManager");
-		LOG.info(DateUtil.getCurrentTime()+"--查询荣誉信息");
+		LOG.info("\n"+DateUtil.getCurrentTime()+"--查询荣誉信息");
 		return modelAndView;
 	}
 
