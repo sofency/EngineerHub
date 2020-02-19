@@ -30,7 +30,7 @@ public class IndexFamesController {
 		//首先从缓存中拿取数据
 		List<Fame> famesList =null;
 		if(redisTemplate.hasKey("fames:list")) {
-			famesList = redisTemplate.opsForList().range("fames", 0, -1);
+			famesList = redisTemplate.opsForList().range("fames:list", 0, -1);
 			LOG.info("\n"+DateUtil.getCurrentTime()+"从缓存中拿取荣誉信息");
 		}else {
 			famesList = fameService.getFamesList();
