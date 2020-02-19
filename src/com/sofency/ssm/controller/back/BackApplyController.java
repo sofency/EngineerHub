@@ -37,6 +37,7 @@ public class BackApplyController {
 	@Autowired
 	private  RedisTemplate<Object, Object> redisTemplate;
 	
+	
 	@GetMapping("/getCandidates")
 	public ModelAndView selectCandidateList(@RequestParam(required=true,defaultValue="1") Integer page,Byte status) {
 		ModelAndView model = new ModelAndView();

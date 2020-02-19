@@ -27,16 +27,16 @@ public class IndexFamesController {
 	public ModelAndView showFames() {
 		ModelAndView modelAndView = new ModelAndView();
 		//首先从缓存中拿取数据
-		List<Fame> fames =null;
+		List<Fame> famesList =null;
 		if(redisTemplate.hasKey("fames")) {
-			fames = redisTemplate.opsForList().range("fames", 0, -1);
+			famesList = redisTemplate.opsForList().range("fames", 0, -1);
 			LOG.info("\n"+DateUtil.getCurrentTime()+"从缓存中拿取荣誉信息");
 		}else {
-			fames = fameService.getFamesList();
-			redisTemplate.opsForList().leftPushAll("fames", fames);
+			famesList = fameService.getFamesList();
+			redisTemplate.opsForList().leftPushAll("fames", famesList);
 			LOG.info("\n"+DateUtil.getCurrentTime()+"从数据库中拿取荣誉信息");
 		}
-		modelAndView.addObject("fames", fames);
+		modelAndView.addObject("fames", famesList);
 		modelAndView.setViewName("indexPage/fame");
 		return modelAndView;
 	}
