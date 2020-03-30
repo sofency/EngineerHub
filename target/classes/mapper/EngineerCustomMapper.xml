@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofency.ssm.mapper.EngineerCustomMapper">
+	<resultMap id="BaseResultMap" type="com.sofency.ssm.pojo.Engineer" >
+	    <id column="engineer_id" property="engineerId" jdbcType="INTEGER" />
+	    <result column="engineer_name" property="engineerName" jdbcType="VARCHAR" />
+	    <result column="engineer_img_path" property="engineerImgPath" jdbcType="VARCHAR" />
+	    <result column="engineer_sex" property="engineerSex" jdbcType="VARCHAR" />
+	    <result column="engineer_tel" property="engineerTel" jdbcType="CHAR" />
+	    <result column="engineer_email" property="engineerEmail" jdbcType="VARCHAR" />
+	    <result column="inst_id" property="instId" jdbcType="INTEGER" />
+	    <result column="major_id" property="majorId" jdbcType="INTEGER" />
+	    <result column="engineer_motto" property="engineerMotto" jdbcType="VARCHAR" />
+	    <result column="engineer_git" property="engineerGit" jdbcType="VARCHAR" />
+	  </resultMap>
+
+	<resultMap id="EngineerCustom" type="com.sofency.ssm.pojo.EngineerCustom" extends="BaseResultMap">
+		<result property="fameName" column="fame_name"></result>
+		<result property="fameLevel" column="fame_level"></result>
+		<result property="getTime" column="get_time" javaType="java.util.Date"></result>
+	</resultMap>
+	
+	<resultMap id="engineersSomeInfo" type="com.sofency.ssm.pojo.EngineersSomeInfo">
+		<result column="engineer_name" property="engineerName" jdbcType="VARCHAR" />
+	    <result column="engineer_img_path" property="engineerImgPath" jdbcType="VARCHAR" />
+	    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+	    <result column="engineer_email" property="engineerEmail" jdbcType="VARCHAR" />
+	    <result column="engineer_motto" property="engineerMotto" jdbcType="VARCHAR" />
+	    <result column="engineer_git" property="engineerGit" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<select id="getAllEngineerInfo" resultMap="BaseResultMap">
+		select * from engineer
+	</select>
+	
+	<!-- 根据id获取该人员的详细信息 -->
+	<select id="getAllEngineerInfoAndFames" parameterType="Integer" resultMap="EngineerCustom">
+		select engineer_id,engineer_sex,engineer_name,engineer_img_path,engineer_tel,
+		engineer_email,inst_name,major_name,engineer_motto,
+		fame_name,fame_level,getfame.get_time
+		from engineer,getfame,fame,institute,major
+		where engineer.engineer_id=getfame.engineer_id
+		and getfame.fame_id=fame.fame_id
+		and engineer.engineer_id=#{engineerId}
+		and engineer.inst_id =institute.inst_id
+		and engineer.major_id = major.major_id
+	</select>
+	
+	
+	<!-- 分页查询 -->
+	<select id="findEngineerInfoByPage" parameterType="Integer" resultMap="BaseResultMap">
+        select * from engineer limit #{page},4
+  	</select>
+  	
+  	<!-- 根据名字进行模糊查询 -->
+  	<select id="findEngineerByName" parameterType="String" resultMap="BaseResultMap">
+  		select * from engineer where engineer_name like concat('%',#{username},'%')
+  	</select>
+  	
+  	<!-- 查询工作室人员的简短信息到前端 -->
+  	<select id="getEngineersSomeInfo"  resultMap="engineersSomeInfo">
+  		select engineer_name,engineer_img_path,engineer_motto,engineer_email,engineer_git,major_name from engineer
+  		LEFT JOIN institute on engineer.inst_id = institute.inst_id
+		LEFT JOIN major on institute.inst_id = major.inst_id and engineer.major_id = major.major_id
+  	</select>
+</mapper>
