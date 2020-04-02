@@ -1,28 +1,20 @@
 package com.sofency.ssm.controller.back;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
 import com.sofency.ssm.service.interfaces.CandidateService;
 import com.sofency.ssm.service.interfaces.SendMailUtilService;
-import com.sofency.ssm.utils.DateUtil;
+import com.sofency.utils.DateUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/back")
@@ -31,13 +23,11 @@ public class BackApplyController {
 
 	private CandidateService candidateService;
 	private SendMailUtilService sendMailUtilService;
-	private  RedisTemplate<Object, Object> redisTemplate;
 
 	@Autowired
-	public BackApplyController(CandidateService candidateService, SendMailUtilService sendMailUtilService, RedisTemplate<Object, Object> redisTemplate) {
+	public BackApplyController(CandidateService candidateService, SendMailUtilService sendMailUtilService) {
 		this.candidateService = candidateService;
 		this.sendMailUtilService = sendMailUtilService;
-		this.redisTemplate = redisTemplate;
 	}
 
 	@GetMapping("/getCandidates")
@@ -54,7 +44,7 @@ public class BackApplyController {
 	    if(status==0) {
 	    	model.setViewName("manager/applicationManage");
 	    }else if(status==1){
-	    	model.setViewName("manager/applicationDealed");
+	    	model.setViewName("manager/applicationDetail");
 	    }else {
 	    	model.setViewName("manager/applicationPass");
 	    }

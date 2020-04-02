@@ -1,15 +1,11 @@
 package com.sofency.ssm.controller.common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.sofency.ssm.service.interfaces.InstituteMajorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +16,11 @@ import com.sofency.ssm.pojo.Major;
 public class CommonController {
 
 	private InstituteMajorService instituteMajorService;
-	private  RedisTemplate redisTemplate;
+
 
 	@Autowired
-	public CommonController(InstituteMajorService instituteMajorService, RedisTemplate redisTemplate) {
+	public CommonController(InstituteMajorService instituteMajorService) {
 		this.instituteMajorService = instituteMajorService;
-		this.redisTemplate = redisTemplate;
 	}
 	//获取院系对应的专业
 	@SuppressWarnings("unchecked")

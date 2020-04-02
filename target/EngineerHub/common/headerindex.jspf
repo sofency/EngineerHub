@@ -4,7 +4,8 @@
 	<ul id="myTab" class="nav  col-xs-8 col-md-8" style="height:60px;line-height: 60px;">
 	    <li class="nav-item"><a href="http://localhost:9999/EngineerHub/index.jsp" style="padding-top:0"  class="nav-link" >工作室简介</a></li>
 	    <li class="nav-item"><a href="http://localhost:9999/EngineerHub/index/selectEngineerInfo" style="padding-top:0"  class="nav-link" >人员介绍</a></li>
-	    <li class="nav-item"><a href="http://localhost:9999/EngineerHub/index/showfames" style="padding-top:0"  class="nav-link" >往期成就</a></li>
+	    <li class="nav-item"><a href="http://localhost:9999/EngineerHub/index/showFameList" style="padding-top:0"  class="nav-link" >往期成就</a></li>
+		<li class="nav-item"><a href="http://localhost:9999/EngineerHub/news" style="padding-top:0" class="nav-link">最新消息</a></li>
 	    <li class="nav-item"><a href="http://localhost:9999/EngineerHub/index/toJoin" style="padding-top:0" class="nav-link">一起撸项目</a></li>
 	</ul>
 </div>

@@ -9,14 +9,18 @@ public class FameCustom extends Fame implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String engineerName;//工作人员姓名
-	private Date gettime;//获取时间
-	
-	public Date getGettime() {
-	    return gettime;
+	private Integer engineerId;//荣誉人的id
+	private Date getTime;//获取时间
+
+	public FameCustom() {
 	}
-	
-	public void setGettime(Date gettime) {
-        this.gettime = gettime;
+
+	public Integer getEngineerId() {
+		return engineerId;
+	}
+
+	public void setEngineerId(Integer engineerId) {
+		this.engineerId = engineerId;
 	}
 
 	public String getEngineerName() {
@@ -26,7 +30,13 @@ public class FameCustom extends Fame implements Serializable{
 	public void setEngineerName(String engineerName) {
 		this.engineerName = engineerName;
 	}
-	
-	
 
+
+	public Date getGetTime() {
+		return getTime;
+	}
+
+	public void setGetTime(Date getTime) {
+		this.getTime = getTime;
+	}
 }

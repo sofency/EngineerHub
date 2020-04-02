@@ -12,13 +12,7 @@ public interface EngineerCustomMapper {
 	 * @return List<Engineer>
 	 */
 	public List<Engineer> getAllEngineerInfo();
-	
-	/**
-	 * 
-	 * @param num 起始数据的下标  
-	 * @return List<Engineer>
-	 */
-	public List<Engineer> findEngineerInfoByPage(int num);
+
 	
 	/**
 	 * 

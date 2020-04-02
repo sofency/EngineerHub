@@ -17,7 +17,7 @@
 	<resultMap id="EngineerCustom" type="com.sofency.ssm.pojo.EngineerCustom" extends="BaseResultMap">
 		<result property="fameName" column="fame_name"></result>
 		<result property="fameLevel" column="fame_level"></result>
-		<result property="getTime" column="get_time" javaType="java.util.Date"></result>
+		<result column="get_time" jdbcType="TIMESTAMP" property="getTime" />
 	</resultMap>
 	
 	<resultMap id="engineersSomeInfo" type="com.sofency.ssm.pojo.EngineersSomeInfo">
@@ -28,7 +28,6 @@
 	    <result column="engineer_motto" property="engineerMotto" jdbcType="VARCHAR" />
 	    <result column="engineer_git" property="engineerGit" jdbcType="VARCHAR" />
 	</resultMap>
-	
 	
 	<select id="getAllEngineerInfo" resultMap="BaseResultMap">
 		select * from engineer
@@ -46,8 +45,7 @@
 		and engineer.inst_id =institute.inst_id
 		and engineer.major_id = major.major_id
 	</select>
-	
-	
+
 	<!-- 分页查询 -->
 	<select id="findEngineerInfoByPage" parameterType="Integer" resultMap="BaseResultMap">
         select * from engineer limit #{page},4

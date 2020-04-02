@@ -32,10 +32,7 @@ public class EngineersSomeInfo implements Serializable{
 		return engineerImgPath;
 	}
 	
-	public void setEngineerImgPath(String engineerImgpath) {
-		this.engineerImgPath = engineerImgpath;
-	}
-	
+
 	public String getMajorName() {
 		return majorName;
 	}
@@ -48,24 +45,29 @@ public class EngineersSomeInfo implements Serializable{
 		return engineerMotto;
 	}
 	
-	public void setEngineerMotto(String engineerMotto) {
-		this.engineerMotto = engineerMotto;
-	}
-	
+
 	public String getEngineerEmail() {
 		return engineerEmail;
 	}
 	
-	public void setEngineerEmail(String engineerEmail) {
-		this.engineerEmail = engineerEmail;
-	}
-	
+
 	public String getEngineerGit() {
 		return engineerGit;
 	}
-	
+
+	public void setEngineerImgPath(String engineerImgPath) {
+		this.engineerImgPath = engineerImgPath;
+	}
+
+	public void setEngineerMotto(String engineerMotto) {
+		this.engineerMotto = engineerMotto;
+	}
+
+	public void setEngineerEmail(String engineerEmail) {
+		this.engineerEmail = engineerEmail;
+	}
+
 	public void setEngineerGit(String engineerGit) {
 		this.engineerGit = engineerGit;
 	}
-
 }

@@ -4,12 +4,10 @@ import java.util.List;
 
 import com.sofency.ssm.mapper.CandidateMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.sofency.ssm.exception.CustomException;
 import com.sofency.ssm.mapper.CandidateCustomMapper;
 import com.sofency.ssm.pojo.Candidate;
 import com.sofency.ssm.pojo.CandidateCustomExample;
@@ -17,7 +15,7 @@ import com.sofency.ssm.pojo.CandidateExample;
 import com.sofency.ssm.pojo.CandidateExample.Criteria;
 import com.sofency.ssm.service.interfaces.CandidateService;
 
-@Service
+
 public class CandidateServiceImpl implements CandidateService{
 	private CandidateCustomMapper candidateCustomMapper;
 	private CandidateMapper candidateMapper;
@@ -88,11 +86,6 @@ public class CandidateServiceImpl implements CandidateService{
 	public Candidate getNameAndMail(Integer candidateId) {
 		Candidate candidate = candidateMapper.selectByPrimaryKey(candidateId);
 		if(candidate==null) {
-			try {
-				throw new CustomException("查询的用户不存在");
-			} catch (CustomException e) {
-				e.printStackTrace();
-			}
 			return null;
 		}else{
 			return candidate;

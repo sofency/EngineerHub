@@ -4,17 +4,12 @@ import java.util.List;
 
 import com.sofency.ssm.mapper.EngineerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.sofency.ssm.mapper.EngineerCustomMapper;
 import com.sofency.ssm.pojo.Engineer;
 import com.sofency.ssm.pojo.EngineersSomeInfo;
 import com.sofency.ssm.service.interfaces.EngineerService;
-import org.springframework.stereotype.Service;
 
-
-@Service
 public class EngineerServiceImpl implements EngineerService{
-	
 	private EngineerCustomMapper engineerCustomMapper;
 	private EngineerMapper engineerMapper;
 
@@ -36,14 +31,12 @@ public class EngineerServiceImpl implements EngineerService{
 	public List<Engineer> getAll() {
 		return engineerCustomMapper.getAllEngineerInfo();
 	}
-	
-	
+
 	@Override
 	public List<Engineer> findEngineerInfoByName(String username) {
 		return engineerCustomMapper.findEngineerByName(username);
 	}
-	
-	
+
 	@Override
 	public List<EngineersSomeInfo> getEngineersSomeInfo() {
 		return engineerCustomMapper.getEngineersSomeInfo();
@@ -64,7 +57,4 @@ public class EngineerServiceImpl implements EngineerService{
 		int flag = engineerMapper.deleteByPrimaryKey(id);
 		return flag;
 	}
-	
-	
-	
 }

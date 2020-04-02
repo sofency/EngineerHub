@@ -5,5 +5,7 @@ import java.util.List;
 import com.sofency.ssm.pojo.FameCustom;
 
 public interface FameCustomMapper {
-	public List<FameCustom> getFamesInfoList();
+	public List<FameCustom> getFameInfoList();
+
+	FameCustom getFameInfo(FameCustom fameCustom);
 }

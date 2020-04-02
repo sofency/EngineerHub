@@ -23,10 +23,7 @@
 	    <result column="inst_name" property="instName" jdbcType="VARCHAR" />
    		<result column="major_name" property="majorName" jdbcType="VARCHAR" />
 	  </resultMap>
-		<!-- 分页查找 -->
-	  <select id="findInfoByPage" parameterType="Integer" resultMap="BaseResultMap">
-	        select * from candidate limit #{page},4
-	  </select>
+
 	  <select id="getInfoById" parameterType="Integer" resultMap="candidateCustomExample">
 	        select candidate_id,candidate_name,candidate_sex,candidate_tel,candidate_email,candidate_introduce,candidate_fame,inst_name,major_name
 	         from candidate,institute,major

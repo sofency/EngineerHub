@@ -2,16 +2,14 @@ package com.sofency.ssm.controller.back;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.sofency.ssm.pojo.Institute;
 import com.sofency.ssm.service.interfaces.EngineerService;
 import com.sofency.ssm.service.interfaces.InstituteMajorService;
+import com.sofency.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sofency.ssm.pojo.Engineer;
-import com.sofency.ssm.utils.DateUtil;
 
 @Controller
 @RequestMapping("/back")
@@ -47,19 +44,18 @@ public class BackEngineerController {
 		List<Institute> institutes = instituteMajorService.getInstitutes();//获取院系
 		PageHelper.startPage(page, 3);//每页显示四个数据
 		List<Engineer> list=engineerService.getAll();
-		PageInfo<Engineer> pages = new PageInfo<Engineer>(list);
-		
+		PageInfo<Engineer> pages = new PageInfo<>(list);
 		model.addObject("pages", pages);
 		model.addObject("EngineerCustom", list);
 		model.addObject("institutes", institutes);//获取院系
 		model.setViewName("manager/PersonManager");
-		LOG.info("\n"+DateUtil.getCurrentTime()+"查询工作时人员信息");
+		LOG.info("\n"+ DateUtil.getCurrentTime()+"查询工作时人员信息");
 		return model;
 	}
 	//插入工作室人员的信息
 	@ResponseBody
 	@PostMapping("/insertEngineer")
-	public Map<Integer, String> insertEngineer(HttpServletRequest request, @RequestParam(required = false) MultipartFile file, Engineer engineer) throws IllegalStateException, IOException {
+	public Map<String, String> insertEngineer(HttpServletRequest request, @RequestParam(required = false) MultipartFile file, Engineer engineer) throws IllegalStateException, IOException {
 		//接受多个文件
 	   String newImageName = null;
 	   if(file!=null&&file.getSize()!=0) {
@@ -72,12 +68,14 @@ public class BackEngineerController {
 	   }else{
 		   engineer.setEngineerImgPath(null);
 	   }
-	   int flag = engineerService.insertEngineer(engineer);
-       
+
+	   engineerService.insertEngineer(engineer);
        LOG.info("\n"+DateUtil.getCurrentTime()+"--执行了插入操作"+engineer.toString());
-		Map<Integer,String> map= new HashMap<>();
-		map.put(200,"修改正确");
-		return map;
+
+       Map<String,String> map= new HashMap<>();
+       map.put("code","200");
+       map.put("message","修改成功");
+       return map;
    }
 
    //根据名字查找用户
@@ -92,7 +90,6 @@ public class BackEngineerController {
 	@RequestMapping("/GetInfo/{id}")
 	@ResponseBody
 	public Engineer GetInfo(@PathVariable("id") Integer id) {
-		
 		//首先在redis中查找用户
 		Engineer engineer = engineerService.GetInfo(id);
 		LOG.info("\n"+DateUtil.getCurrentTime()+": 根据id"+id+"向数据库中查询用户");
@@ -101,10 +98,10 @@ public class BackEngineerController {
 	
 	@RequestMapping("/save")
 	@ResponseBody
-	public Map<Integer, String> keepInfo(Engineer engineer, MultipartFile file) throws IllegalStateException, IOException {
+	public Map<String, String> keepInfo(Engineer engineer, MultipartFile file) throws IllegalStateException, IOException {
 		//接受多个文件
 		String newImageName = null;
-		if(file.getSize()!=0){
+		if(file!=null&&file.getSize()!=0){
 			String originalName = file.getOriginalFilename();
 			String uuidName = UUID.randomUUID().toString();
 			newImageName = uuidName + originalName.substring(originalName.lastIndexOf("."));
@@ -116,8 +113,9 @@ public class BackEngineerController {
 		}
         engineerService.save(engineer);
         LOG.info("\n"+DateUtil.getCurrentTime()+"更新人员信息"+engineer);
-		Map<Integer,String> map= new HashMap<>();
-		map.put(200,"修改正确");
+		Map<String,String> map= new HashMap<>();
+		map.put("code","200");
+		map.put("message","修改成功");
         return map;
 	}
 	

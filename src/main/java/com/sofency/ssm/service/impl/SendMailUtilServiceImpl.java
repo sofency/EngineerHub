@@ -18,13 +18,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import com.sofency.ssm.service.interfaces.SendMailUtilService;
-import org.springframework.stereotype.Service;
 
-@Service
 public class SendMailUtilServiceImpl implements SendMailUtilService{
-
     private  JavaMailSender javaMailSender;//在spring中配置的邮件发送的bean
-
 	@Autowired
 	public SendMailUtilServiceImpl(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
@@ -62,5 +58,4 @@ public class SendMailUtilServiceImpl implements SendMailUtilService{
 		}
         return "success";
 	}
-
 }

@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sofency.utils.DateUtil;
+import com.sofency.utils.MD5Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sofency.ssm.pojo.Manager;
 import com.sofency.ssm.service.interfaces.LoginService;
-import com.sofency.ssm.utils.DateUtil;
-import com.sofency.ssm.utils.MD5Utils;
 
 @Controller
 public class LoginController {
@@ -48,7 +48,7 @@ public class LoginController {
 				cookie.setPath("/");
 				response.addCookie(cookie);//添加cookie
 			}
-			LOG.info("\n"+DateUtil.getCurrentTime()+"--"+username+"登录后台");
+			LOG.info("\n"+ DateUtil.getCurrentTime()+"--"+username+"登录后台");
 			return "redirect:/back/getCandidates.action?page=0&&status=0";//未处理
 		}else {
 			model.addAttribute("flag", "密码或者账户错误");

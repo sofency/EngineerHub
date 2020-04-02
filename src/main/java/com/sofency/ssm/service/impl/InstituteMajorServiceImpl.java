@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sofency.ssm.pojo.Major;
 import com.sofency.ssm.pojo.MajorExample;
 import com.sofency.ssm.pojo.MajorExample.Criteria;
-import org.springframework.stereotype.Service;
 
-@Service
 public class InstituteMajorServiceImpl implements InstituteMajorService {
 
 	private InstituteMapper instituteMapper;

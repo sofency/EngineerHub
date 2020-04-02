@@ -23,7 +23,7 @@
 		                 <div class="input-group">
 		                     <input type="text" class="form-control" placeholder="Search for name" id="searchName" onchange="fullEngineerInfo()">
 		                     <span class="input-group-btn"><a class="btn btn-default" href="javascript:void(0)" onclick="searchname()">搜索</a></span>
-		                 </div><!-- /input-group -->
+		                 </div><
 		             </div>
 		             <div class="col-xs-2 pull-right">
 		                 <button class="btn btn-success pull-right" data-toggle="modal" data-target="#chooseIndex" id="addInfo">添加</button>
@@ -87,7 +87,7 @@
              </div>
              <div class="modal-body">
                  <form id="engineerForm"  class="form-horizontal" action="http:/localhost:9999/EngineerHub/back/insertEngineer" method="post" enctype="multipart/form-data">
-                    <input type="hidden"  id="engineer_id" placeholder="编号" name="engineerId">
+                     <input type="hidden"  id="engineer_id" placeholder="编号" name="engineerId">
                      <div class="form-group">
                          <label for="engineer_name" class="col-sm-2 control-label">姓名</label>
                          <div class="col-sm-10">
@@ -155,10 +155,11 @@
                              <input type="text" class="form-control" id="engineer_motto"  placeholder="格言" name="engineerMotto">
                          </div>
                      </div>
+					 <div class="modal-footer">
+						 <input type="submit" class="btn btn-primary pull-right" id="formBtn"  value="提交">
+						 <input type="reset" class="btn btn-primary pull-right" value="重置">
+					 </div>
 				</form>
-                 <div class="modal-footer">
-			       <input type="button" class="btn btn-primary pull-right" id="formBtn" onclick="add_info()"  value="提交">
-			     </div>
              </div>
          </div>
      </div>
@@ -168,79 +169,79 @@
 <script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/staticfile/js/getmajor.js"></script>
 <script src="${pageContext.request.contextPath}/staticfile/js/searchname.js"></script>
+<script src="${pageContext.request.contextPath}/staticfile/js/jquery-form.js"></script>
 <script type="text/javascript">
-function add_info() {
-	const result = $("#engineerForm").submit();
-	console.log("表单提交的结果" + result);
-	$("#chooseIndex").on("hidden.bs.modal", function () {
-		$(this).removeData("bs.modal");
-	});
-}
-//添加信息
-$("#addInfo").click(function(){
-	$(".modal-title").html("添加人员信息");
-	$("#engineerForm").attr("action","http://localhost:9999/EngineerHub/back/insertEngineer");
-	$("#engineer_name").val("");
-	$("#engineer_tel").val("");
-	$("#engineer_email").val("");
-	$("#engineer_git").val("");
-	$("#imgSrc").attr("src","");
-	$("#formBtn").attr("value","添加");
-})
-//预览图片
-function changePic(obj){
-	 const reads= new FileReader();
-	 const file = document.getElementById('engineer_imgPath').files[0];
-     reads.readAsDataURL(file);
-     reads.onload=function (e) {
-         document.getElementById('imgSrc').src=this.result;
-     };
-}
-
-//编辑
-function edit(id){
-	//替换标题
-	$(".modal-title").html("编辑人员信息");
-	$.get("/EngineerHub/back/GetInfo/"+id,function(data){
-		console.log(data)
-		$("#engineerForm").attr("action","http://localhost:9999/EngineerHub/back/save");
-		$("#engineer_name").val(data.engineerName);
-		if(data.engineerSex==1){
-			$("#inlineRadio1").attr("checked","checked");
-		}else if(data.engineerSex==2){
-			$("#inlineRadio2").attr("checked","checked");
-		}
-		$("#engineer_id").val(data.engineerId);
-		$("#engineer_tel").val(data.engineerTel);
-		$("#engineer_email").val(data.engineerEmail);
-		$("#engineer_git").val(data.engineerGit);
-		//选择专业和院系
-		$("#institute option[id="+data.instId+"]").attr("selected",true);
-		$.ajaxSettings.async = false;
-		getmajor();
-		$.ajaxSettings.async = true;
-		$("#engineerMajor option[id="+data.majorId+"]").attr("selected",true);
-		$("#imgSrc").attr("src",data.engineerImgPath);
-		$("#engineer_motto").val(data.engineerMotto);
-		$("#formBtn").attr("value","修改");
-	})
-}
-function deleteInfo(id){
-	$.ajax({
-		url:"http://localhost:9999/EngineerHub/back/delete/"+id,
-		type:"POST",
-		data:{
-			_method:"DELETE",
-			"id":id
-		},
-		success:function(data){
-			if(data=="true"){
-				alert("删除成功");
-				window.location.reload();
+	$(function () {
+		$("#engineerForm").ajaxForm(function (data) {
+			console.log(data);
+			console.log("str:" + JSON.stringify(data));
+			if(data.code=="200") {
+				setTimeout(function () {
+					$(".close").click();
+				}, 2000)
 			}
-		}
+		})
 	})
-}
+	//添加信息
+	$("#addInfo").click(function(){
+		$(".modal-title").html("添加人员信息");
+		$("#engineerForm").resetForm();
+		$("#engineerForm").attr("action","http://localhost:9999/EngineerHub/back/insertEngineer");
+		$("#formBtn").attr("value","添加");
+	})
+	//预览图片
+	function changePic(obj){
+		const reads= new FileReader();
+		const file = document.getElementById('engineer_imgPath').files[0];
+		reads.readAsDataURL(file);
+		reads.onload=function (e) {
+			document.getElementById('imgSrc').src=this.result;
+		};
+	}
+	//编辑
+	function edit(id){
+		//替换标题
+		$(".modal-title").html("编辑人员信息");
+		$.get("/EngineerHub/back/GetInfo/"+id,function(data){
+			console.log(data)
+			$("#engineerForm").attr("action","http://localhost:9999/EngineerHub/back/save");
+			$("#engineer_name").val(data.engineerName);
+			if(data.engineerSex==1){
+				$("#inlineRadio1").attr("checked","checked");
+			}else if(data.engineerSex==2){
+				$("#inlineRadio2").attr("checked","checked");
+			}
+			$("#engineer_id").val(data.engineerId);
+			$("#engineer_tel").val(data.engineerTel);
+			$("#engineer_email").val(data.engineerEmail);
+			$("#engineer_git").val(data.engineerGit);
+			//选择专业和院系
+			$("#institute option[id="+data.instId+"]").attr("selected",true);
+			$.ajaxSettings.async = false;
+			getmajor();
+			$.ajaxSettings.async = true;
+			$("#engineerMajor option[id="+data.majorId+"]").attr("selected",true);
+			$("#imgSrc").attr("src",data.engineerImgPath);
+			$("#engineer_motto").val(data.engineerMotto);
+			$("#formBtn").attr("value","修改");
+		})
+	}
+	function deleteInfo(id) {
+		$.ajax({
+			url: "http://localhost:9999/EngineerHub/back/delete/" + id,
+			type: "POST",
+			data: {
+				_method: "DELETE",
+				"id": id
+			},
+			success: function (data) {
+				if (data == "true") {
+					alert("删除成功");
+					window.location.reload();
+				}
+			}
+		})
+	}
 </script>
 </body>
 </html>

@@ -25,7 +25,7 @@
 <%
 	int cnt =0;
 %>
-<c:forEach items="${fames}" var="fame">
+<c:forEach items="${fameList}" var="fame">
 	<%cnt++; %>
 	<% if(cnt%2!=0){%>
 	    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
