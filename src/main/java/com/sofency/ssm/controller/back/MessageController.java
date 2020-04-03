@@ -51,7 +51,6 @@ public class MessageController {
             }
         }
     }
-
     @RequestMapping("/messages")
     public ModelAndView sendMsg(){
         List<Message> messages = messageService.getMsgs();
@@ -69,10 +68,6 @@ public class MessageController {
     @RequestMapping("/deleteMsg")
     public String deleteMsg(Integer msgId){
         int i = messageService.deleteMsg(msgId);
-        if(i==0){
-            return "false";//删除失败
-        }else{
-            return "true";
-        }
+        return i==0?"false":"true";
     }
 }

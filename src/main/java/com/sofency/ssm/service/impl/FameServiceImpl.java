@@ -14,10 +14,8 @@ import com.sofency.ssm.service.interfaces.FameService;
 
 
 public class FameServiceImpl implements FameService{
-
 	private FameMapper fameMapper;
 	private FameCustomMapper fameCustomMapper;
-
 	@Autowired
 	public FameServiceImpl(FameMapper fameMapper, FameCustomMapper fameCustomMapper) {
 		this.fameMapper = fameMapper;
@@ -30,7 +28,6 @@ public class FameServiceImpl implements FameService{
 		List<Fame> list = fameMapper.selectByExample(null);
 		return list;
 	}
-	
 
 	//获得详细荣誉列表的api
 	@Override
@@ -58,11 +55,16 @@ public class FameServiceImpl implements FameService{
 
 	@Override
 	public FameCustom getFameInfo(FameCustom fameCustom) {
-		List<FameCustom> list = (List<FameCustom>) fameCustomMapper.getFameInfo(fameCustom);
+		List<FameCustom> list = fameCustomMapper.getFameInfo(fameCustom);
 		if(list==null || list.size()==0){
 			return null;
 		}else {
 			return list.get(0);
 		}
+	}
+
+	@Override
+	public List<Integer> getThreeId() {
+		return fameCustomMapper.getThreeId();
 	}
 }

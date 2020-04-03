@@ -31,10 +31,13 @@
 	<select id="getFameInfo" parameterType="com.sofency.ssm.pojo.FameCustom" resultMap="fameCustomDemo">
 		select fame.fame_id,fame.fame_name,
       		 fame.fame_level,engineer_name,
-      		 getfame.get_time,getfame.engineer_id
+      		 getfame.get_time,getfame.engineer_id,fame.fame_description
 			from engineer  join getfame on engineer.engineer_id=getfame.engineer_id
                     and getfame.engineer_id=#{engineerId}
                     join fame on getfame.fame_id=fame.fame_id
                     and getfame.fame_id=#{fameId}
+	</select>
+	<select id="getThreeId" resultType="Integer">
+		select engineer_id from getfame group by engineer_id limit 0,3;
 	</select>
 </mapper>

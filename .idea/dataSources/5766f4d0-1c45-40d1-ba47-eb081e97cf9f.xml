@@ -1180,6 +1180,7 @@
     <column id="298" parent="281" name="candidate_status">
       <Position>10</Position>
       <DataType>tinyint|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="299" parent="281" name="candidate_tel">
@@ -1402,7 +1403,7 @@ inst_id</ColNames>
     </column>
     <column id="338" parent="288" name="msg_time">
       <Position>4</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="339" parent="288" name="msg_visited">

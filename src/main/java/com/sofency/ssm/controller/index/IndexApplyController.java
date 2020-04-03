@@ -30,6 +30,7 @@ public class IndexApplyController {
 	//申请表单
 	@RequestMapping("/insertApply")
 	public ModelAndView insertApply(Candidate candidate) {
+		candidate.setCandidateStatus((byte) 0);
 		boolean flag = this.candidateService.insertCandidate(candidate);
 		System.out.println("插入的结果"+flag);
 		ModelAndView model = new ModelAndView();

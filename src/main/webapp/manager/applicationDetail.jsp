@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+	<style>
+		.nav-main ul a:hover{
+			text-decoration: none;
+		}
+	</style>
 </head>
 <body>
 <div style="height:100%;height:100%; background-color: #f1f2f6">

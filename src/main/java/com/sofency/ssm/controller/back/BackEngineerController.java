@@ -68,7 +68,7 @@ public class BackEngineerController {
 	   }else{
 		   engineer.setEngineerImgPath(null);
 	   }
-
+	   engineer.setEngineerEmail("mailto:"+engineer.getEngineerEmail());
 	   engineerService.insertEngineer(engineer);
        LOG.info("\n"+DateUtil.getCurrentTime()+"--执行了插入操作"+engineer.toString());
 

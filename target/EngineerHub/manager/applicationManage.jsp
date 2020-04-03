@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+	<style>
+		.nav-main ul a:hover{
+			text-decoration: none;
+		}
+	</style>
 </head>
 <body>
 <div style="height:100%;height:100%; background-color: #f1f2f6">
@@ -39,7 +44,7 @@
 			 <div class="panel panel-primary" style="height:100%">
 			     <div class="panel-heading">未处理</div>
 			     <div class="panel-body"  style="height:100%">
-					  <table class="table table-bordered text-center" style="height: 80%">
+					  <table class="table table-bordered text-center">
 			            <thead>
 				             <tr>
 				                 <th class="text-center">申请号</th>
@@ -162,13 +167,16 @@ function deal(num){
 	console.log(num)
 	//发送该申请人的id 状态为淘汰
 	let candidateId = $("#candidateId").val();
+	if(num==1){
+		alert("确定发送邮件通知")
+	}
 	console.log(candidateId);
 	$.ajax({
 		url:"http://localhost:9999/EngineerHub/back/candidate/"+candidateId+"/"+num,
 	    type:"post",
 		async:true,
 		success:function(data){
-			console.log(data)
+			alert(data);
 		}
 	})
 	$("#myModalDetail").modal('hide')

@@ -16,4 +16,6 @@ public interface FameService {
 	int insert(Fame fame1);
 
 	FameCustom getFameInfo(FameCustom fameCustom);
+
+	List<Integer> getThreeId();
 }

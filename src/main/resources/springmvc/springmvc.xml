@@ -19,23 +19,24 @@
        	<mvc:resources location="/js/" mapping="/ja/**"></mvc:resources> -->
 
        <!-- 全局异常类 -->
-<!--       	<bean class="com.sofency.ssm.exception.CustomExceptionResolver"/>-->
+       	<bean class="com.sofency.ssm.exception.CustomExceptionResolver"/>
        	
        	<mvc:annotation-driven>
 			<mvc:message-converters>
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-				<property name="objectMapper">
-					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
-						<property name="dateFormat">
-							<bean class="java.text.SimpleDateFormat">
-								<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
-							</bean>
-						</property>
-					</bean>
-				</property>
-			</bean>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="objectMapper">
+						<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+							<property name="dateFormat">
+								<bean class="java.text.SimpleDateFormat">
+									<constructor-arg type="java.lang.String" value="yyyy-MM-dd" />
+								</bean>
+							</property>
+						</bean>
+					</property>
+				</bean>
 			</mvc:message-converters>
 		</mvc:annotation-driven>
+
         
         <!-- 如果不使用上面的注解驱动的话需要在注解适配取中写上下面的内容-->
 <!--        <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
@@ -67,14 +68,14 @@
 	    </bean>
         
 <!--         &lt;!&ndash;拦截器的配置&ndash;&gt;-->
-<!--        <mvc:interceptors>-->
-<!--        	<mvc:interceptor>-->
-<!--        		&lt;!&ndash; 拦截管理员端下的页面   是拦截action的&ndash;&gt;-->
-<!--        		<mvc:mapping path="/back/**"></mvc:mapping>-->
-<!--        		&lt;!&ndash; 不拦截网站显示的页面 &ndash;&gt;-->
-<!--        		<bean class="com.sofency.ssm.interceptor.loginInterceptor"></bean>-->
-<!--        	</mvc:interceptor>-->
-<!--        </mvc:interceptors>-->
+        <mvc:interceptors>
+        	<mvc:interceptor>
+        		<!-- 拦截管理员端下的页面   是拦截action的-->
+				<mvc:mapping path="/back/**"/>
+        		<!-- 不拦截网站显示的页面 -->
+				<bean class="com.sofency.ssm.interceptor.loginInterceptor"/>
+        	</mvc:interceptor>
+        </mvc:interceptors>
         <!-- 设置默认的静态资源处理方式 -->
         <mvc:default-servlet-handler/>
 </beans>

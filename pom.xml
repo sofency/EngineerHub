@@ -40,12 +40,6 @@
       <artifactId>EngineerHub_utils</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-    <!--拦截器的设置-->
-    <dependency>
-      <groupId>com.sofency</groupId>
-      <artifactId>EngineerHub_interceptor</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
     <!--异常处理类-->
     <dependency>
       <groupId>com.sofency</groupId>

@@ -3,6 +3,7 @@ package com.sofency.ssm.service.interfaces;
 import java.util.List;
 
 import com.sofency.ssm.pojo.Engineer;
+import com.sofency.ssm.pojo.EngineerCustom;
 import com.sofency.ssm.pojo.EngineersSomeInfo;
 
 public interface EngineerService {
@@ -26,4 +27,6 @@ public interface EngineerService {
 
 	//删除信息
 	public int delete(Integer id);
+
+    List<EngineerCustom> selectCodeGod(List<Integer> engineerIds);
 }

@@ -32,10 +32,11 @@ public class SendMailUtilServiceImpl implements SendMailUtilService{
         MimeMessageHelper mMessageHelper;
         InputStream inputStream = null;
         try {
-			inputStream = new BufferedInputStream(new FileInputStream(new File("H:\\eclipse_workspace\\EngineerHub\\WebContent\\WEB-INF\\classes\\mail.properties")));
+			inputStream = new BufferedInputStream(new FileInputStream(new File("E:\\Java\\EngineerHub\\src\\main\\resources\\mail.properties")));
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			return "false";
 		}
         Properties prop = new Properties();
         String from;
@@ -51,10 +52,13 @@ public class SendMailUtilServiceImpl implements SendMailUtilService{
 	        javaMailSender.send(mMessage);//发送邮件
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			return "false";
 		} catch (IOException e) {
 			e.printStackTrace();
+			return "false";
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			return "false";
 		}
         return "success";
 	}

@@ -96,3 +96,6 @@ transition: box-shadow 0.5s;
 .anniu:active{
     box-shadow:0px 0px 5px 1px #FF0000;
 }
+.nav-main ul a:hover{
+	text-decoration: none;
+}

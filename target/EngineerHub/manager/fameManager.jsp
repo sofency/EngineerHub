@@ -56,7 +56,7 @@
 					                 <td>${item.fameLevel}</td>
 									 <td>${item.getTime}</td>
 					                 <td>
-					                     <button class="btn btn-primary" onclick="changeInfo(${item.fameId},${item.engineerId})"  data-toggle="modal" data-target="#fameDemo"><span class="glyphicon">编辑</span></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					                     <button class="btn btn-primary" onclick="showInfo(${item.fameId},${item.engineerId})"  data-toggle="modal" data-target="#fameDemo"><span class="glyphicon">查看详情</span></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					                 </td>
 			            		 </tr>
 			             	</c:forEach>
@@ -95,7 +95,7 @@
                 <h4 class="modal-title">添加荣誉</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="fame" action="http://localhost:9999/EngineerHub/back/insertOrCreateFame" method="post">
+                <form class="form-horizontal" id="fame" action="${pageContext.request.contextPath}/back/insertFame" method="post">
 					<input type="hidden" name="fameId" id="fameId" >
                     <div class="form-group">
                         <label for="fame_name" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label ">荣誉名称</label>
@@ -112,7 +112,7 @@
 					<div class="form-group">
 						<label for="fame_description" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label ">荣誉描述</label>
 						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-							<input type="text" class="form-control" id="fame_description" name="fameDescription" placeholder="荣誉描述">
+							<textarea type="text" class="form-control" id="fame_description" name="fameDescription" placeholder="荣誉描述" rows="3"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -127,9 +127,14 @@
 							<input type="text" class="form-control" id="engineer_id" name="engineerId" placeholder="获取者编号">
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="engineerName" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">获取者姓名</label>
+						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+							<input type="text" class="form-control" id="engineerName" name="engineerName" placeholder="获取者姓名">
+						</div>
+					</div>
 					<div class="modal-footer">
-						<div id="loading"></div>
-						<input type="reset" class="btn btn-default" data-dismiss="modal">
+						<input type="reset" class="btn btn-default">
 						<input type="submit"  id="submitFame" class="btn btn-primary" value="添加">
 					</div>
                 </form>
@@ -156,26 +161,35 @@
 		 })
 	 });
 	 $("#addInfo").click(function () {
-		$("#fame").resetForm();//重置表单的数据
-	 })
-	 function changeInfo(fameId,engineerId) {
-	 	$(".modal-title").html("修改荣誉");
-	 	$("#submitFame").val("修改");
+		 $(".modal-title").html("添加信息");
+		 $("#fame").resetForm();//重置表单的数据
+		 //显示提交的按钮
+		 $(".form-group").eq(5).css("display","none");
+		 $(".modal-footer").css("display","block");
+		 //设置所有的input可以输入
+		 $("#fame input[type='text'],textarea,input[type='date']").removeAttr("readonly");//删除只读标签
+	 });
+	 function showInfo(fameId,engineerId) {
+	 	$(".modal-title").html("详细信息");
+		$(".form-group").eq(5).css("display","block");
+	 	$(".modal-footer").css("display","none");
+		 $("#fame input[type='text'],textarea,input[type='date']").attr("readonly","readonly");//删除只读标签
 		$.ajax({
 			url:"http://localhost:9999/EngineerHub/back/getInfoById",
 			type:'post',
-			dataType:"application/json",
 			data:{
 				"fameId":fameId,
 				"engineerId":engineerId
 			},
 			success:function (data) {
+				console.log(data);
 				$("#fame_name").val(data.fameName);
 				$("#fame_level").val(data.fameLevel);
 				$("#fame_description").val(data.fameDescription);
-				$("#fame_get_time").val(data.getTime);
+				$("#fame_get_time").val(data.getTime.substring(0,10));
 				$("#engineer_id").val(data.engineerId);
 				$("#fameId").val(data.fameId);//荣誉编号
+				$("#engineerName").val(data.engineerName);
 			}
 		})
 	 }

@@ -73,6 +73,7 @@ public class BackApplyController {
 	public String postCandidate(@PathVariable("id")Integer candidateId,@PathVariable("status")Byte status) {
 		int flag =-1;
 		flag = candidateService.updateCandidate(candidateId,status);//获取修改的状态
+		boolean SendStatus=false;
 		if(status==1){
 			//发送邮件给申请者
 			//首先获取申请者的email
@@ -80,13 +81,18 @@ public class BackApplyController {
 			String email = candidate.getCandidateEmail();
 			String username = candidate.getCandidateName();
 			//然后发送邮件
-			sendMailUtilService.sendMail(email, username);
-			LOG.info("\n"+DateUtil.getCurrentTime()+"向id为"+candidateId+"申请人发送邮件");
+			String sendMail = sendMailUtilService.sendMail(email, username);
+			if(sendMail.equals("success")){
+				SendStatus=true;
+			}else{
+				SendStatus = false;
+			}
+			LOG.info("\n"+DateUtil.getCurrentTime()+"向id为"+candidateId+"申请人发送邮件"+"发送状态为"+SendStatus);
 		}
 		if(flag>=0) {
-			return "true";
+			return SendStatus?"简历发送成功":"邮件未发送成功";
 		}else {
-			return "false";
+			return "处理失败";
 		}
 	}
 	

@@ -16,6 +16,7 @@
 
 	<resultMap id="EngineerCustom" type="com.sofency.ssm.pojo.EngineerCustom" extends="BaseResultMap">
 		<result property="fameName" column="fame_name"></result>
+		<result property="instName" column="inst_name"></result>
 		<result property="fameLevel" column="fame_level"></result>
 		<result column="get_time" jdbcType="TIMESTAMP" property="getTime" />
 	</resultMap>
@@ -62,4 +63,18 @@
   		LEFT JOIN institute on engineer.inst_id = institute.inst_id
 		LEFT JOIN major on institute.inst_id = major.inst_id and engineer.major_id = major.major_id
   	</select>
+
+
+	<select id="selectEngineersCustom" resultMap="EngineerCustom" parameterType="list">
+		select distinct engineer.engineer_id,engineer_sex,engineer.major_id,engineer.inst_id,engineer_name,engineer_img_path,
+		engineer_email,inst_name,major_name,engineer_motto
+		from getfame join  engineer on engineer.engineer_id=getfame.engineer_id
+		and engineer.engineer_id in
+		<foreach collection="list" item="engineerId"  open="("
+				 separator="," close=")">
+			#{engineerId,jdbcType=INTEGER}
+		</foreach>
+		left join institute on engineer.inst_id = institute.inst_id
+		left join major on engineer.major_id = major.major_id and major.inst_id=institute.inst_id
+	</select>
 </mapper>

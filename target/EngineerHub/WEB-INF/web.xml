@@ -11,6 +11,9 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>com.sofency.ssm.listener.SessionListener</listener-class>
+  </listener>
 
   <!-- 配置前端控制器  类似于servlet-->   <!-- 配置restful的前端控制器 -->
   <servlet>
@@ -61,6 +64,10 @@
 <!--    <url-pattern>/login.action</url-pattern>-->
 <!--  </filter-mapping>-->
 
+  <!--设置会话维持的时间-->
+  <session-config>
+    <session-timeout>3600</session-timeout>
+  </session-config>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

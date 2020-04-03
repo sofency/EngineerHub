@@ -23,7 +23,7 @@
 		                 <div class="input-group">
 		                     <input type="text" class="form-control" placeholder="Search for name" id="searchName" onchange="fullEngineerInfo()">
 		                     <span class="input-group-btn"><a class="btn btn-default" href="javascript:void(0)" onclick="searchname()">搜索</a></span>
-		                 </div><
+		                 </div>
 		             </div>
 		             <div class="col-xs-2 pull-right">
 		                 <button class="btn btn-success pull-right" data-toggle="modal" data-target="#chooseIndex" id="addInfo">添加</button>

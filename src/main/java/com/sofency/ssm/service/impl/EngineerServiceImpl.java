@@ -3,6 +3,8 @@ package com.sofency.ssm.service.impl;
 import java.util.List;
 
 import com.sofency.ssm.mapper.EngineerMapper;
+import com.sofency.ssm.pojo.EngineerCustom;
+import com.sofency.ssm.pojo.EngineerExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.sofency.ssm.mapper.EngineerCustomMapper;
 import com.sofency.ssm.pojo.Engineer;
@@ -56,5 +58,13 @@ public class EngineerServiceImpl implements EngineerService{
 	public int delete(Integer id) {
 		int flag = engineerMapper.deleteByPrimaryKey(id);
 		return flag;
+	}
+
+	@Override
+	public List<EngineerCustom> selectCodeGod(List<Integer> majors) {
+		System.out.println(majors.toArray());
+		List<EngineerCustom> engineers = engineerCustomMapper.selectEngineersCustom(majors);
+		System.out.println(engineers);
+		return engineers;
 	}
 }

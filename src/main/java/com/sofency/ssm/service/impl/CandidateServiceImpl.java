@@ -15,7 +15,6 @@ import com.sofency.ssm.pojo.CandidateExample;
 import com.sofency.ssm.pojo.CandidateExample.Criteria;
 import com.sofency.ssm.service.interfaces.CandidateService;
 
-
 public class CandidateServiceImpl implements CandidateService{
 	private CandidateCustomMapper candidateCustomMapper;
 	private CandidateMapper candidateMapper;
@@ -47,7 +46,6 @@ public class CandidateServiceImpl implements CandidateService{
 		Criteria criteria = example.createCriteria();
 		criteria.andCandidateStatusEqualTo(status);
 		List<Candidate> list = candidateMapper.selectByExample(example);
-		
 		return list;
 	}
 
