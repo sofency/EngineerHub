@@ -17,6 +17,7 @@ import java.util.List;
  * @description
  */
 @Controller
+@RequestMapping("/index")
 public class NewsController {
 
     private MessageService messageService;
@@ -24,14 +25,13 @@ public class NewsController {
     public NewsController(MessageService messageService){
         this.messageService = messageService;
     }
+
     @RequestMapping("/news")
     public String news(Model model){
         List<Message> messages = messageService.getMsgs();
         model.addAttribute("messages",messages);
         return "indexPage/news";
     }
-
-
     @RequestMapping("/messageDetail/{msgId}")
     public String messageDetail(@PathVariable("msgId") Integer msgId, Model model){
         //根据文章的id查询消息

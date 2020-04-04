@@ -6,11 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/manager.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
     <style>
         blockquote{
             background-color: #dfe6e9;
@@ -25,13 +25,13 @@
         <div class="col-md-3 nav-main" style="background-color: transparent">
             <ul class="text-center">
                 <li>
-                    <a href="http://localhost:9999/EngineerHub/message" class="anniu">
+                    <a href="/EngineerHub/message" class="anniu">
                         <i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
                         <span>我要发布</span>
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:9999/EngineerHub/messages" class="anniu">
+                    <a href="/EngineerHub/messages" class="anniu">
                         <i class="fa fa-check" aria-hidden="true"  style="font-size: 1em;margin-right: 10px;"></i>
                         <span>我的发布</span>
                     </a>
@@ -70,7 +70,7 @@
         }
         function deleteInfo(msgId) {
             $.ajax({
-                url:"http://localhost:9999/EngineerHub/deleteMsg",
+                url:"/EngineerHub/deleteMsg",
                 type:'get',
                 data:{
                     "msgId":msgId

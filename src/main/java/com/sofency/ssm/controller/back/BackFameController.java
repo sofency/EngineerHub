@@ -39,7 +39,7 @@ public class BackFameController {
 	public ModelAndView showFameToManager(@PathVariable("page") int page) {
 		ModelAndView modelAndView = new ModelAndView();
 		PageHelper.startPage(page, 3);//每页显示四个数据
-		List<FameCustom> fame = fameService.getFameInfoList();
+		List<FameCustom> fame = fameService.getFameInfoList(page);
 		System.out.println(fame.size());
 		PageInfo<FameCustom> pages = new PageInfo<>(fame);
 		modelAndView.addObject("pages", pages);

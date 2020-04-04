@@ -9,7 +9,7 @@ public interface FameService {
 	//获取荣誉的信息
 	public List<Fame> getFameList();
 	//荣誉管理页面获取的荣誉信息
-	List<FameCustom> getFameInfoList();
+	List<FameCustom> getFameInfoList(int page);
 
 	Fame getFameByName(String FameName);
 

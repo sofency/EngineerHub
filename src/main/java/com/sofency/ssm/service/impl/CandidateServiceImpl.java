@@ -38,7 +38,6 @@ public class CandidateServiceImpl implements CandidateService{
 		}
 		return flag>0?true:false;
 	}
-	
 	//获取申请人列表的api
 	@Override
 	public List<Candidate> getCandidateList(Byte status) {//
@@ -57,7 +56,7 @@ public class CandidateServiceImpl implements CandidateService{
 
 	//查询简历的总页数
 	@Override
-	public Integer countRows() {
+	public Integer getCountRows() {
 		int num = (int) candidateMapper.countByExample(null);
 		return num/SIZE+1;
 	}

@@ -11,9 +11,6 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <listener>
-    <listener-class>com.sofency.ssm.listener.SessionListener</listener-class>
-  </listener>
 
   <!-- 配置前端控制器  类似于servlet-->   <!-- 配置restful的前端控制器 -->
   <servlet>

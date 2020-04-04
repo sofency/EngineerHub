@@ -23,25 +23,25 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    @Cacheable(value = "findMessageById")
+    @Cacheable(value = "messages",key = "'message:'+#msgId")
     public Message findById(Integer msgId) {
         return messageMapper.selectByPrimaryKey(msgId);
     }
 
     @Override
-    @CacheEvict(value = {"findMessageById","getAllMessage"} ,allEntries = true)
+    @CacheEvict(value = "messages" ,allEntries = true)
     public int insertMsg(Message message) {
         return messageMapper.insert(message);
     }
 
     @Override
-    @Cacheable(value = "getAllMessage")
+    @Cacheable(value = "messages",key = "'AllMessages'")
     public List<Message> getMsgs() {
         return messageMapper.selectByExampleWithBLOBs(null);//查询所有的数据
     }
 
     @Override
-    @CacheEvict(value = {"findMessageById","getAllMessage"} ,allEntries = true)
+    @CacheEvict(value = "messages" ,key = "'message:'+#msgId")
     public int deleteMsg(Integer msgId) {
         return messageMapper.deleteByPrimaryKey(msgId);
     }

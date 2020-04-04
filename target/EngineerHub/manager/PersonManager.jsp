@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/css/manager.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div style="height:100%;height:100%; background-color: #f1f2f6">
@@ -57,13 +57,13 @@
 		            <nav aria-label="Page navigation">
 		                <ul class="pagination">
 		                    <li class="page-item">
-		                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/engineers/${pages.prePage }"  id="prev" aria-label="Previous">
+		                        <a class="page-link" href="/EngineerHub/back/engineers/${pages.prePage }"  id="prev" aria-label="Previous">
 		                            <span aria-hidden="true">&laquo;</span>
 		                        </a>
 		                    </li>
 		                   <li class="page-item"><a class="page-link" href="javascript:void(0)">${pages.prePage+1}</a></li>
 		                    <li class="page-item">
-		                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/engineers/${pages.nextPage}" id="next" aria-label="Next">
+		                        <a class="page-link" href="/EngineerHub/back/engineers/${pages.nextPage}" id="next" aria-label="Next">
 		                            <span aria-hidden="true">&raquo;</span>
 		                        </a>
 		                    </li>
@@ -86,7 +86,7 @@
                  <h4 class="modal-title">添加人员信息</h4>
              </div>
              <div class="modal-body">
-                 <form id="engineerForm"  class="form-horizontal" action="http:/localhost:9999/EngineerHub/back/insertEngineer" method="post" enctype="multipart/form-data">
+                 <form id="engineerForm"  class="form-horizontal" action="/EngineerHub/back/insertEngineer" method="post" enctype="multipart/form-data">
                      <input type="hidden"  id="engineer_id" placeholder="编号" name="engineerId">
                      <div class="form-group">
                          <label for="engineer_name" class="col-sm-2 control-label">姓名</label>
@@ -164,12 +164,12 @@
          </div>
      </div>
  </div>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery.validate.min.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/getmajor.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/searchname.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery-form.js"></script>
+<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+<script src="/EngineerHub/staticfile/js/jquery.validate.min.js"></script>
+<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
+<script src="/EngineerHub/staticfile/js/getmajor.js"></script>
+<script src="/EngineerHub/staticfile/js/searchname.js"></script>
+<script src="/EngineerHub/staticfile/js/jquery-form.js"></script>
 <script type="text/javascript">
 	$(function () {
 		$("#engineerForm").ajaxForm(function (data) {
@@ -186,7 +186,7 @@
 	$("#addInfo").click(function(){
 		$(".modal-title").html("添加人员信息");
 		$("#engineerForm").resetForm();
-		$("#engineerForm").attr("action","http://localhost:9999/EngineerHub/back/insertEngineer");
+		$("#engineerForm").attr("action","/EngineerHub/back/insertEngineer");
 		$("#formBtn").attr("value","添加");
 	})
 	//预览图片
@@ -204,7 +204,7 @@
 		$(".modal-title").html("编辑人员信息");
 		$.get("/EngineerHub/back/GetInfo/"+id,function(data){
 			console.log(data)
-			$("#engineerForm").attr("action","http://localhost:9999/EngineerHub/back/save");
+			$("#engineerForm").attr("action","/EngineerHub/back/save");
 			$("#engineer_name").val(data.engineerName);
 			if(data.engineerSex==1){
 				$("#inlineRadio1").attr("checked","checked");
@@ -228,7 +228,7 @@
 	}
 	function deleteInfo(id) {
 		$.ajax({
-			url: "http://localhost:9999/EngineerHub/back/delete/" + id,
+			url: "/EngineerHub/back/delete/" + id,
 			type: "POST",
 			data: {
 				_method: "DELETE",

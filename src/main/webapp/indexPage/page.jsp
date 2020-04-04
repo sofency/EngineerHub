@@ -5,9 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <title>工作室简介</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/index.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/header.css">
+<%--    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.min.css">--%>
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/index.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/style1.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .jumbotron{
+            background-color: transparent;
+        }
+    </style>
 </head>
 <body>
 <%@include file="../common/headerindex.jspf"%>
@@ -18,43 +28,43 @@
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img width="100%" height="100%" src="${pageContext.request.contextPath}/staticfile/img/room3.jpg"/>
-        <div class="container">
-          <div class="carousel-caption text-right">
-            <h1>我没时间加班</h1>
-            <p>的确，晚上和周末我们都要工作，哪还有时间加班呢? </p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-          </div>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img width="100%" height="100%" src="/EngineerHub/staticfile/img/room3.jpg"/>
+        <div class="carousel-caption">
+            <div class="jumbotron">
+                <h1>我没时间加班</h1>
+                <p>的确，晚上和周末我们都要工作，哪还有时间加班呢?</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            </div>
         </div>
       </div>
-      <div class="carousel-item">
-		<img width="100%" height="100%" src="${pageContext.request.contextPath}/staticfile/img/room4.jpg"/>        
-		<div class="container">
-          <div class="carousel-caption">
-            <h1>开发名言警句</h1>
-            <p>征服畏惧、建立自信的最快最确实的方法，就是去做你害怕的事，直到你获得成功的经验。</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-          </div>
+      <div class="item">
+		<img width="100%" height="100%" src="/EngineerHub/staticfile/img/room4.jpg"/>
+		<div class="carousel-caption">
+            <div class="jumbotron">
+                <h1>开发名言警句</h1>
+                <p>征服畏惧、建立自信的最快最确实的方法，就是去做你害怕的事，直到你获得成功的经验</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
         </div>
       </div>
-      <div class="carousel-item">
-		<img width="100%" height="100%" src="${pageContext.request.contextPath}/staticfile/img/room5.jpg"/>
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1>新人啊，快点来吧。</h1>
-            <p>我们对新人的渴求如引强烈，是因为我们无知地以为增加人手会降低我们的劳动强度。 </p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-          </div>
+      <div class="item">
+		<img width="100%" height="100%" src="/EngineerHub/staticfile/img/room5.jpg"/>
+        <div class="carousel-caption">
+            <div class="jumbotron">
+                <h1>新人啊，快点来吧。</h1>
+                <p>我们对新人的渴求如引强烈，是因为我们无知地以为增加人手会降低我们的劳动强度。 </p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
         </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#myCarousel"  data-slide="prev">
+    <a class="left carousel-control" href="#myCarousel"  data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#myCarousel"  data-slide="next">
+    <a class="right carousel-control" href="#myCarousel"  data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -63,17 +73,23 @@
   <div class="container marketing">
   	<h3 class="text-center" style="margin-bottom: 20px;">镇站大佬</h3>
   	<hr>
-      <span>${engineersGod.get(0).majorName}</span>
     <div class="row">
         <c:forEach items="${engineersGod}" var="engineer">
-            <div class="col-lg-4" style="width:400px;position:relative;padding:0" onmouseover="showshadow(this)" onmouseleave="hiddenshadow(this)">
-                <img src="${engineer.engineerImgPath}" width="300" height="398"/>
-                <div class="shadow" style="width:300px; margin:auto;position:absolute;bottom:0;left:0;right:0;background-color: black; color:white;background-color: rgba(0,0,0,0.6);display: none;">
-                    <p class="t-title" style="font-size: 24px;">${engineer.engineerName}<br>
+
+            <div class="single-member effect-3">
+                <div class="member-image">
+                    <img src="${engineer.engineerImgPath}" alt="Member">
+                </div>
+                <div class="member-info">
+                    <h3>${engineer.engineerName}</h3>
+                    <h5>
                         <span>${engineer.instName}</span>
                         <span>${engineer.majorName}</span>
-                    </p>
-                    <p style="word-wrap:break-word;">${engineer.engineerMotto}</p>
+                    </h5>
+                    <p>${engineer.engineerMotto}.</p>
+                    <div class="social-touch">
+                        <a href="${engineer.engineerEmail}" title="email"><i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 1.5em;color: white"></i></a>
+                    </div>
                 </div>
             </div>
         </c:forEach>
@@ -119,8 +135,9 @@
           <p style="color: black">邮箱：1432085874@qq.com</p>
       </div>
 </div>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.bundle.min.js"></script>
+<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+<script src="/EngineerHub/staticfile/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
   function showshadow(obj){
 	  $(obj).children("div.shadow").slideDown(100,"linear");

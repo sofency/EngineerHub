@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/css/manager.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
 	<style>
 		.nav-main ul a:hover{
 			text-decoration: none;
@@ -21,19 +21,19 @@
 		<div class="col-md-2 nav-main">
 			<ul class="text-center">
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=0" class="anniu">
+	    			<a href="/EngineerHub/back/getCandidates.action?page=1&&status=0" class="anniu">
 	    				<i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>未处理</span>
 	    			</a>
 	    		</li>
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=1" class="anniu">
+	    			<a href="/EngineerHub/back/getCandidates.action?page=1&&status=1" class="anniu">
 	    				<i class="fa fa-check" aria-hidden="true"  style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>已通过</span>
 	    			</a>
 	    		</li>
 	    		<li>
-	    			<a href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=1&&status=-1" class="anniu">
+	    			<a href="/EngineerHub/back/getCandidates.action?page=1&&status=-1" class="anniu">
 	    				<i class="fa fa-times" aria-hidden="true" style="font-size: 1em;margin-right: 10px;"></i>
 	    				<span>已淘汰</span>
 	    			</a>
@@ -73,13 +73,13 @@
 			            <nav aria-label="Page navigation">
 			                <ul class="pagination">
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=0"  id="prev" aria-label="Previous">
+			                        <a class="page-link" href="/EngineerHub/back/getCandidates.action?page=${page.prePage}&&status=0"  id="prev" aria-label="Previous">
 			                            <span aria-hidden="true">&laquo;</span>
 			                        </a>
 			                    </li>
 			                   <li class="page-item"><a class="page-link" href="javascript:void(0)">${page.prePage+1}</a></li>
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=0" id="next" aria-label="Next">
+			                        <a class="page-link" href="/EngineerHub/back/getCandidates.action?page=${page.nextPage}&&status=0" id="next" aria-label="Next">
 			                            <span aria-hidden="true">&raquo;</span>
 			                        </a>
 			                    </li>
@@ -159,9 +159,9 @@
 	    </div>
 	</div>
 </div>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/application.js"></script>
+<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
+<script src="/EngineerHub/staticfile/js/application.js"></script>
 <script type="text/javascript">
 function deal(num){
 	console.log(num)
@@ -172,7 +172,7 @@ function deal(num){
 	}
 	console.log(candidateId);
 	$.ajax({
-		url:"http://localhost:9999/EngineerHub/back/candidate/"+candidateId+"/"+num,
+		url:"/EngineerHub/back/candidate/"+candidateId+"/"+num,
 	    type:"post",
 		async:true,
 		success:function(data){

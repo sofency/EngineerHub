@@ -11,7 +11,7 @@ public interface EngineerService {
 	public int insertEngineer(Engineer engineer);
 
 	//获取工作室所有人员的信息
-	public List<Engineer> getAll();
+	public List<Engineer> getAll(int page);
 
 	//根据名字获取信息
 	public List<Engineer> findEngineerInfoByName(String username);
@@ -20,7 +20,7 @@ public interface EngineerService {
 	public List<EngineersSomeInfo> getEngineersSomeInfo();
 	
 	//根据员工id查询数据
-	public Engineer GetInfo(Integer id);
+	public Engineer getInfo(Integer id);
 
 	//修改信息
 	public void save(Engineer engineer);

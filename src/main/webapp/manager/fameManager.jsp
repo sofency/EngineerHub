@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/manager.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+	<link rel="stylesheet" href="/EngineerHub/staticfile/css/manager.css">
+	<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
 	<style type="text/css">
 		.form-group label{
 			text-indent: 3px;
@@ -67,13 +67,13 @@
 			            <nav aria-label="Page navigation">
 			                <ul class="pagination">
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/fame/${pages.prePage}"  id="prev" aria-label="Previous">
+			                        <a class="page-link" href="/EngineerHub/back/fame/${pages.prePage}"  id="prev" aria-label="Previous">
 			                            <span aria-hidden="true">&laquo;</span>
 			                        </a>
 			                    </li>
 			                   <li class="page-item"><a class="page-link" href="javascript:void(0)">${pages.prePage+1}</a></li>
 			                    <li class="page-item">
-			                        <a class="page-link" href="http://localhost:9999/EngineerHub/back/fame/${pages.nextPage}" id="next" aria-label="Next">
+			                        <a class="page-link" href="/EngineerHub/back/fame/${pages.nextPage}" id="next" aria-label="Next">
 			                            <span aria-hidden="true">&raquo;</span>
 			                        </a>
 			                    </li>
@@ -95,7 +95,7 @@
                 <h4 class="modal-title">添加荣誉</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="fame" action="${pageContext.request.contextPath}/back/insertFame" method="post">
+                <form class="form-horizontal" id="fame" action="/EngineerHub/back/insertFame" method="post">
 					<input type="hidden" name="fameId" id="fameId" >
                     <div class="form-group">
                         <label for="fame_name" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label ">荣誉名称</label>
@@ -143,9 +143,9 @@
     </div>
 </div>
 </div>
- <script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
- <script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
- <script src="${pageContext.request.contextPath}/staticfile/js/jquery-form.js"></script>
+ <script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+ <script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
+ <script src="/EngineerHub/staticfile/js/jquery-form.js"></script>
 
  <script type="application/javascript">
 	 $(function () {
@@ -175,7 +175,7 @@
 	 	$(".modal-footer").css("display","none");
 		 $("#fame input[type='text'],textarea,input[type='date']").attr("readonly","readonly");//删除只读标签
 		$.ajax({
-			url:"http://localhost:9999/EngineerHub/back/getInfoById",
+			url:"/EngineerHub/back/getInfoById",
 			type:'post',
 			data:{
 				"fameId":fameId,

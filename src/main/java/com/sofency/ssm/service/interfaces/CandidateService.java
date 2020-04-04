@@ -17,7 +17,7 @@ public interface CandidateService {
 	public CandidateCustomExample selectCandidateInfo(Integer candidateId);
 	
 	//获取记录申请人的页数
-	public Integer countRows();
+	public Integer getCountRows();
 	
 	//根据id更换申请人的简历状态
 	public Integer updateCandidate(Integer candidateId, Byte status);

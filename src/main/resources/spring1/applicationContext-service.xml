@@ -55,6 +55,10 @@
 
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<!--可以序列化对象-->
+		<property name="defaultSerializer">
+			<bean  class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		</property>
 	</bean>
 
 	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">

@@ -13,17 +13,16 @@ pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
     <title>消息详情</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/editormd.preview.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/editormd.preview.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/staticfile/js/editormd.js"></script>
-    <script src="${pageContext.request.contextPath}/staticfile/js/lib/marked.min.js"></script>
-    <script src="${pageContext.request.contextPath}/staticfile/js/lib/prettify.min.js"></script>
+    <script src="/EngineerHub/staticfile/js/editormd.js"></script>
+    <script src="/EngineerHub/staticfile/js/lib/marked.min.js"></script>
+    <script src="/EngineerHub/staticfile/js/lib/prettify.min.js"></script>
     <style>
         .container{
             text-align: center;
-            margin-top: 30px;
         }
         .container .message-body{
             margin-top: 20px;

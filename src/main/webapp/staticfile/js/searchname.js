@@ -6,7 +6,7 @@ function searchname(){
 		alert("请输入搜索的人名")
 	}else{
 		$.ajax({
-			url:"http://localhost:9999/EngineerHub/back/engineerhub/"+searchName,
+			url:"/EngineerHub/back/engineerhub/"+searchName,
 			method:"GET",
 			async:true,
 			datatype:"json",

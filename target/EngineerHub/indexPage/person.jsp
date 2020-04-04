@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
 	<style>
 		#container_small_tip{
 			background:#EBEEF7;
@@ -24,6 +24,7 @@
 			white-space:nowrap;
 			color: #EBEEF7;/*与背景颜色相同，先隐藏，需要时再变颜色*/
 		}
+		.card-img{width:100%;border-radius:calc(.25rem - 1px)}
 	</style>
 </head>
 <body>
@@ -43,20 +44,20 @@
 		    </div>
 		    <div  style="flex-grow: 1">
 		      <div class="card-body">
-		      	<div class="row">
+		      	<div class="row" style="margin-left: 0;margin-right: 0">
 			        <blockquote class="blockquote col-md-8">
 					  <h4 class="mb-0">${item.engineerName}</h4>
 					  <footer style="font-size: 18px">${item.majorName}</footer>
 					</blockquote>
 					<div class="col-md-4">
-						<div class="pull-right">
+						<div class="pull-right" style="margin-top: 8px">
 							<a href="${item.engineerGit}" title="github"><i class="fa fa-github" aria-hidden="true" style="font-size: 1.5em;margin-right: 10px;color:gray;"></i></a>
 							<a href="${item.engineerEmail}" title="email"><i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 1.5em;color:gray;"></i></a>
 						</div>
 					</div>
 				</div>
 				<hr/>
-				<div class="row">
+				<div class="row"  style="margin-left: 0;margin-right: 0">
 					 <p class="card-text col-md-12">${item.engineerMotto}</p>
 				</div>
 		      </div>
@@ -64,9 +65,8 @@
 		</div>
 	</c:forEach>
 </div>
-<div class="prompt">期待你的加入</div>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
+<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
 <script>
 	$("#content_small_tip")[0].innerHTML = "期待你的加入";
 	(function ($) {

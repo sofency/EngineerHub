@@ -6,24 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title> 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/header.css">
+	<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+	<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+	<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
 <style>
 	body{
 		background-color: #f8f9fa;
+	}
+	.invalid-feedback{
+		display:none;
+		width:100%;
+		margin-top:.25rem;
+		font-size:80%;
+		color:#dc3545;
 	}
 </style>
 </head>
 <body>
 <%@include file="../common/headerindex.jspf"%>
 <div class="container">
-<form class="form-horizontal"  action="${pageContext.request.contextPath}/index/insertApply.action" method="post">
-	   <div class="mb-3 form-group mt-3">
+<form class="form-horizontal"  action="/EngineerHub/index/insertApply.action" method="post">
+	   <div class="form-group" style="margin-top: 30px">
          <label for="candidateName" class="col-sm-2 control-label">用户名</label>
-         <div class="input-group col-sm-10">
-           <div class="input-group-prepend">
-             <span class="input-group-text">@</span>
-           </div>
+         <div class=" col-sm-10">
            <input type="text" class="form-control" id="candidateName" placeholder="用户名" name="candidateName" required="required">
            <div class="invalid-feedback" style="width: 100%;">
              Your username is required.
@@ -55,30 +60,32 @@
 	      <input type="email" class="form-control" id="candidateEmail" placeholder="请输入邮箱" name="candidateEmail" required="required">
 	    </div>
 	  </div>
-	  <div class="row col-sm-10">
-          <div class="col-md-4 mb-3 form-group">
-            <label for="institute" class="col-sm-3 control-label">院系</label>
-            <select class="custom-select d-block w-100" id="institute" required="required" name="instId" onchange="getmajor()">
-            	<option value="-1" id="-1">请选择院系</option>
-                <c:forEach items="${institutes}" var="item">
-			    	  <option value="${item.instId}" id="${item.instId}">${item.instName}</option>
-			    </c:forEach>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
+          <div class="form-group">
+            <label for="institute" class="col-sm-2 col-md-2 col-xs-2 col-lg-2 control-label">院系</label>
+			  <div class="col-sm-10 col-lg-10 col-xs-10 col-md-10">
+				  <select class="form-control" id="institute" required="required" name="instId" onchange="getmajor()">
+					  <option value="-1" id="-1">请选择院系</option>
+					  <c:forEach items="${institutes}" var="item">
+						  <option value="${item.instId}" id="${item.instId}">${item.instName}</option>
+					  </c:forEach>
+				  </select>
+				  <div class="invalid-feedback">
+					  Please select a valid country.
+				  </div>
+			  </div>
           </div>
-          <div class="col-md-4 mb-3 form-group">
-            <label for="engineerMajor" class="col-sm-3 control-label">专业</label>
-            <select class="custom-select d-block w-100" id="engineerMajor" required="required" name="majorId">
-              <option id="-2">请选择专业</option>
-            </select>
-            <div class="invalid-feedback">
-              Please provide a valid state.
-            </div>
+
+          <div class="form-group">
+            <label for="engineerMajor" class="col-sm-2 col-md-2 col-xs-2 col-lg-2 control-label">专业</label>
+			  <div class="col-sm-10 col-lg-10 col-xs-10 col-md-10">
+				  <select class="form-control " id="engineerMajor" required="required" name="majorId">
+					  <option id="-2">请选择专业</option>
+				  </select>
+				  <div class="invalid-feedback">
+					  Please provide a valid state.
+				  </div>
+			  </div>
           </div>
-        </div>
-	 
 	  <div class="form-group">
 	    <label for="candidateIntroduce" class="col-sm-2 control-label">自我介绍:</label>
 	    <div class="col-sm-10">
@@ -98,9 +105,7 @@
 	  </div>
    </form>
 </div>
-<script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
-<script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
 <!-- 获取自定义的js文件 -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/staticfile/js/getmajor.js"></script>
+<script type="text/javascript" src="/EngineerHub/staticfile/js/getmajor.js"></script>
 </body>
 </html>

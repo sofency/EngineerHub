@@ -13,8 +13,9 @@
 <head>
     <meta charset="UTF-8">
     <title>最新消息</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/EngineerHub/staticfile/css/style.css">
     <style>
         .news{
             margin-top: 20px;
@@ -58,12 +59,12 @@
 </head>
 <body>
 <%@include file="../common/headerindex.jspf"%>
-<div class="container">
+<div class="container" style="z-index: 999">
     <ul class="news">
         <c:forEach items="${messages}" var="message">
         <li >
             <div class="panel panel-default">
-                <a href="${pageContext.request.contextPath}/messageDetail/${message.msgId}"><span class="header" title="查看详情">${message.msgHeader}</span></a>
+                <a href="/EngineerHub/index/messageDetail/${message.msgId}"><span class="header" title="查看详情">${message.msgHeader}</span></a>
                 <p class="panel-body" >
                     ${message.msgContent}
                 </p>
@@ -75,9 +76,22 @@
         </li>
         </c:forEach>
     </ul>
-    <script src="${pageContext.request.contextPath}/staticfile/js/jquery-3.2.1.js"></script>
-    <script src="${pageContext.request.contextPath}/staticfile/js/bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/staticfile/js/dot.js"></script>
 </div>
+<div class="demo" style="margin-left: 124px;z-index: -100">
+    <div class="butterfly" >
+        <div class="wing">
+            <div class="bit"></div>
+            <div class="bit"></div>
+        </div>
+        <div class="wing">
+            <div class="bit"></div>
+            <div class="bit"></div>
+        </div>
+    </div>
+    <div class="shadow"></div>
+</div>
+<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
+<script src="/EngineerHub/staticfile/js/dot.js"></script>
 </body>
 </html>

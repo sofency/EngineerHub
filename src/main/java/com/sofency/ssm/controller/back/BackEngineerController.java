@@ -43,7 +43,7 @@ public class BackEngineerController {
 		
 		List<Institute> institutes = instituteMajorService.getInstitutes();//获取院系
 		PageHelper.startPage(page, 3);//每页显示四个数据
-		List<Engineer> list=engineerService.getAll();
+		List<Engineer> list=engineerService.getAll(page);
 		PageInfo<Engineer> pages = new PageInfo<>(list);
 		model.addObject("pages", pages);
 		model.addObject("EngineerCustom", list);
@@ -91,7 +91,7 @@ public class BackEngineerController {
 	@ResponseBody
 	public Engineer GetInfo(@PathVariable("id") Integer id) {
 		//首先在redis中查找用户
-		Engineer engineer = engineerService.GetInfo(id);
+		Engineer engineer = engineerService.getInfo(id);
 		LOG.info("\n"+DateUtil.getCurrentTime()+": 根据id"+id+"向数据库中查询用户");
 		return engineer;
 	}

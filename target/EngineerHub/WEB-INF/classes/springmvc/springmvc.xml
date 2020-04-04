@@ -19,8 +19,7 @@
        	<mvc:resources location="/js/" mapping="/ja/**"></mvc:resources> -->
 
        <!-- 全局异常类 -->
-       	<bean class="com.sofency.ssm.exception.CustomExceptionResolver"/>
-       	
+<!--       	<bean class="com.sofency.ssm.exception.CustomExceptionResolver"/>-->
        	<mvc:annotation-driven>
 			<mvc:message-converters>
 				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

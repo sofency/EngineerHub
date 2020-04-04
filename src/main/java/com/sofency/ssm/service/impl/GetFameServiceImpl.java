@@ -5,6 +5,8 @@ import com.sofency.ssm.pojo.GetFame;
 import com.sofency.ssm.pojo.GetFameExample;
 import com.sofency.ssm.service.interfaces.GetFameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 /**
@@ -20,6 +22,7 @@ public class GetFameServiceImpl implements GetFameService {
         this.getFameMapper = getFameMapper;
     }
     @Override
+    @CachePut(value = "getFame",key ="'getFame:'+#getFame.fameId+':'+#getFame.engineerId")
     public int insert(GetFame getFame) {
         try {
             getFameMapper.insert(getFame);
@@ -31,6 +34,7 @@ public class GetFameServiceImpl implements GetFameService {
     }
 
     @Override
+    @Cacheable(value = "getFame",key ="'getFame:'+#getFame.fameId+':'+#getFame.engineerId")
     public List<GetFame> getFame(GetFame getFame) {
         GetFameExample example = new GetFameExample();
         example.createCriteria().andEngineerIdEqualTo(getFame.getEngineerId())

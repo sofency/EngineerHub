@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sofency.ssm.pojo.Major;
 import com.sofency.ssm.pojo.MajorExample;
 import com.sofency.ssm.pojo.MajorExample.Criteria;
+import org.springframework.cache.annotation.Cacheable;
 
 public class InstituteMajorServiceImpl implements InstituteMajorService {
 
@@ -24,12 +25,14 @@ public class InstituteMajorServiceImpl implements InstituteMajorService {
 	}
 
 	@Override
+	@Cacheable(value = "institutes",key = "'institutes'")
 	public List<Institute> getInstitutes() {
 		List<Institute> list = instituteMapper.selectByExample(null);//查询所有
 		return list;
 	}
 
 	@Override
+	@Cacheable(value = "majors")
 	public List<Major> getMajors(Integer code) {
 		MajorExample major = new MajorExample();
 		Criteria c = major.createCriteria();
@@ -37,5 +40,4 @@ public class InstituteMajorServiceImpl implements InstituteMajorService {
 		List<Major> list = majorMapper.selectByExample(major);
 		return list;
 	}
-
 }

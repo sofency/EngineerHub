@@ -1,8 +1,9 @@
 package com.sofency.ssm.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EngineerCustom extends  Engineer{
+public class EngineerCustom extends  Engineer implements Serializable {
 	 private Date getTime;//获取的时间
 	 private String fameName;//荣誉的名字
 	 private Integer fameLevel;//荣誉的级别

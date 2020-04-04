@@ -1,7 +1,7 @@
 //获取详情
 function getDetails(id){
 	$.ajax({
-		url:"http://localhost:9999/EngineerHub/back/candidate/"+id,
+		url:"/EngineerHub/back/candidate/"+id,
 		data:{
 			"candidateId":id
 		},
