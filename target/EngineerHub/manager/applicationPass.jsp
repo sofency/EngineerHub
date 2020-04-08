@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
-	<link rel="stylesheet" href="/EngineerHub/staticfile/css/manager.css">
-	<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/manager.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<style>
 		.nav-main ul a:hover{
 			text-decoration: none;
@@ -164,9 +164,9 @@
 	    </div>
 	</div>
 </div>
-<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
-<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
-<script src="/EngineerHub/staticfile/js/application.js"></script>
+<script src="/js/jquery-3.2.1.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/application.js"></script>
 <script type="text/javascript">
 function deal(num){
 	console.log(num)

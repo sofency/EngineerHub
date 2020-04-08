@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
-	<link rel="stylesheet" href="/EngineerHub/staticfile/css/manager.css">
-	<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/manager.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<style type="text/css">
 		.form-group label{
 			text-indent: 3px;
@@ -143,9 +143,9 @@
     </div>
 </div>
 </div>
- <script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
- <script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
- <script src="/EngineerHub/staticfile/js/jquery-form.js"></script>
+ <script src="/js/jquery-3.2.1.js"></script>
+ <script src="/js/bootstrap.js"></script>
+ <script src="/js/jquery-form.js"></script>
 
  <script type="application/javascript">
 	 $(function () {

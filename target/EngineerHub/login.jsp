@@ -11,7 +11,7 @@
     <meta name="generator" content="Jekyll v3.8.6">
     <title>后台 登录</title>
 	  <!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<meta name="theme-color" content="#563d7c">
     <style>
       .bd-placeholder-img {
@@ -30,11 +30,11 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="/EngineerHub/staticfile/css/signin.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
 	    <form class="form-signin" action="/EngineerHub/login" method="post">
-		  <img class="mb-4" src="/EngineerHub/staticfile/img/font.png" alt="" width="72" height="72">
+		  <img class="mb-4" src="/img/font.png" alt="" width="72" height="72">
 		  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		  <label for="Username" class="sr-only">用户名</label>
 		  <input type="text"  class="form-control" placeholder="Username" required autofocus name="username" id="Username">

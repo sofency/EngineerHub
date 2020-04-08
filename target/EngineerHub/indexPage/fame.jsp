@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
-<link rel="stylesheet" href="/EngineerHub/staticfile/css/header.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="https://v4.bootcss.com/docs/examples/product/product.css">
 	<style>
 		.position-relative{position:relative!important}
@@ -30,6 +30,11 @@
 		.bg-dark{background-color:#343a40!important}
 		.bg-primary{background-color:#007bff!important}
 		.text-white{color:#fff!important}
+		@media (max-width:1200px) {
+			.position-relative .product-device{
+				display: none !important;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -48,27 +53,18 @@
 	int cnt =0;
 %>
 <c:forEach items="${fameList}" var="fame">
-	<%cnt++; %>
-	<% if(cnt%2!=0){%>
-	    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-	<%} %>
+	    <div class="flex-md-equal w-80 my-md-3 pl-md-3">
 		<div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden randomcolor" style="position: relative">
 		    <div class="my-3 py-3">
 		      <h2 class="display-5">${fame.fameName}</h2>
 		      <p class="lead">${fame.fameDescription}</p>
 		      <p class="card-text"><small class="text-muted">比赛级别:${fame.fameLevel}</small></p>
 		    </div>
-		    <div class="shadow-sm" style="width: 80%; height: 240px; border-radius: 21px 21px 0 0;">
-		    	<img src="${pageContext.request.contextPath}/staticfile/img/fame1.jpg" class="card-img" alt="荣誉1" style="width:70%;height:240px;border-radius: 21px 21px 0 0;position: absolute;left: 0
-;right: 0;margin: auto">
-		    </div>
 		</div>
-	<% if(cnt%2==0){%>
      </div>
-	<%} %>
 </c:forEach>
-<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
-<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
+<script src="/js/jquery-3.2.1.js"></script>
+<script src="/js/bootstrap.js"></script>
 <script type="text/javascript">
 $(function(){
 	//随机设置颜色

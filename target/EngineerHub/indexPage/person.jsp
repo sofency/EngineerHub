@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
-<link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<style>
 		#container_small_tip{
 			background:#EBEEF7;
@@ -24,7 +25,9 @@
 			white-space:nowrap;
 			color: #EBEEF7;/*与背景颜色相同，先隐藏，需要时再变颜色*/
 		}
-		.card-img{width:100%;border-radius:calc(.25rem - 1px)}
+		.card-img{height: 200px;border-radius:calc(.25rem - 1px);
+			margin-right: 0;margin: auto;
+		}
 	</style>
 </head>
 <body>
@@ -38,18 +41,18 @@
 		<div id="content_small_tip"></div>
 	</div>
 	<c:forEach items="${EngineerSomeInfo}" var="item">
-		<div style="height:270px;display:flex;flex-direction: row;width:100%;background-color: rgb(247,248,250);margin-bottom: 20px">
-			<div style="margin-left:0;width:270px;">
-		      <img height="270" src="${item.engineerImgPath }" class="card-img" alt="暂无图片">
+		<div style="width:100%;background-color: rgb(247,248,250);margin-bottom: 20px">
+			<div style="margin-left:0;" class="col-lg-3">
+		      <img  src="${item.engineerImgPath }" class="card-img img-responsive" width="100%" alt="暂无图片">
 		    </div>
 		    <div  style="flex-grow: 1">
 		      <div class="card-body">
 		      	<div class="row" style="margin-left: 0;margin-right: 0">
-			        <blockquote class="blockquote col-md-8">
+			        <blockquote class="blockquote col-md-8 col-sm-8 col-xs-8">
 					  <h4 class="mb-0">${item.engineerName}</h4>
 					  <footer style="font-size: 18px">${item.majorName}</footer>
 					</blockquote>
-					<div class="col-md-4">
+					<div class="col-md-1 col-sm-1 col-xs-1">
 						<div class="pull-right" style="margin-top: 8px">
 							<a href="${item.engineerGit}" title="github"><i class="fa fa-github" aria-hidden="true" style="font-size: 1.5em;margin-right: 10px;color:gray;"></i></a>
 							<a href="${item.engineerEmail}" title="email"><i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 1.5em;color:gray;"></i></a>
@@ -65,8 +68,8 @@
 		</div>
 	</c:forEach>
 </div>
-<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
-<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
+<script src="/js/jquery-3.2.1.js"></script>
+<script src="/js/bootstrap.js"></script>
 <script>
 	$("#content_small_tip")[0].innerHTML = "期待你的加入";
 	(function ($) {
@@ -108,7 +111,6 @@
 			}
 		});
 	})(jQuery);
-	//插件的调用$("#yourId").roll({speed:#yourSpeed});
 	$(document).ready(
 			function () {
 				$("#container_small_tip").roll({ speed: 2 });

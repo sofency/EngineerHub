@@ -12,10 +12,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>最新消息</title>
-    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
-    <link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/EngineerHub/staticfile/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         .news{
             margin-top: 20px;
@@ -90,8 +91,8 @@
     </div>
     <div class="shadow"></div>
 </div>
-<script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
-<script src="/EngineerHub/staticfile/js/bootstrap.js"></script>
-<script src="/EngineerHub/staticfile/js/dot.js"></script>
+<script src="/js/jquery-3.2.1.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/dot.js"></script>
 </body>
 </html>

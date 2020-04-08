@@ -13,13 +13,14 @@ pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
     <title>消息详情</title>
-    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.css">
-    <link rel="stylesheet" href="/EngineerHub/staticfile/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/EngineerHub/staticfile/css/editormd.preview.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/editormd.preview.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/EngineerHub/staticfile/js/editormd.js"></script>
-    <script src="/EngineerHub/staticfile/js/lib/marked.min.js"></script>
-    <script src="/EngineerHub/staticfile/js/lib/prettify.min.js"></script>
+    <script src="/js/editormd.js"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
     <style>
         .container{
             text-align: center;

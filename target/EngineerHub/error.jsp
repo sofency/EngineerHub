@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>工作室简介</title>
-    <link rel="stylesheet" href="/EngineerHub/staticfile/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/EngineerHub/staticfile/css/index.css">
-    <script src="/EngineerHub/staticfile/js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/jquery-3.2.1.js"></script>
 </head>
 <body>
 <%@include file="common/headerindex.jspf"%>

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.sofency.ssm.pojo.Manager;
 import com.sofency.ssm.service.interfaces.LoginService;
 
-import java.util.Map;
 
 @Controller
 public class LoginController {
